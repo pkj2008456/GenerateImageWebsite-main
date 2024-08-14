@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="Setting.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <title>Navigation Bar Example</title>
+
+</head>
+<body>
+  <div class="nav-bar">
+    <p> Image Generator</p> <br><br>
+        <div class="nav-item" onclick="goToHome()">
+          <i class="fa-solid fa-house"></i>
+          <span>Home</span>
+        </div>
+        <div class="nav-item" onclick="goToLibrary()">
+          <i class="fa-solid fa-icons"></i>
+          <span>Library</span>
+        </div>
+        <div class="nav-item" onclick="goToImageGen()">
+          <i class="fa-regular fa-image"></i>
+          <span>Image Generation</span>
+        </div>
+        <div class="nav-item" onclick="goToUpgradePlan()">
+          <i class="fa-solid fa-basket-shopping"></i>
+          <span>Upgrade Plan</span>
+        </div>
+        <div class="nav-item" onclick="goToSetting()">
+          <i class="fa-solid fa-gear"></i>
+          <span>Setting</span>
+        </div>
+  </div>
+  <div class="content">
+    <h2>Manage Account</h2>
+    <div class="row">
+      <div class="col">
+        <label for="username">Username</label>
+        <input type="text" id="username" value="User">
+      </div>
+      <div class="col">
+        <label for="phone-number">Phone number</label>
+        <input type="tel" id="phone-number" value="+852 111 111">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <label for="email">Email</label>
+        <input type="email" id="email" value="user1@mail.com">
+      </div>
+      <div class="col">
+        <label for="account-plan">Account Plan</label>
+        <input type="text" id="current-plan" value="Free Account">
+          <button class="upgrade-btn" onclick="goToUpgradePlan()" >Upgrade</button>
+        </input>
+      </div>
+    </div>
+    
+    <br>
+    <h2>General Setting</h2>
+    <div class="general-setting">
+      <div onclick="gotoLanguage()">
+        Language
+        <img id="polygon" src="images/Setting_Polygon.svg">
+        <p>English</p>
+      </div>
+
+      <div onclick="gotoNotification()">
+        Notifications
+        <img id="polygon" src="images/Setting_Polygon.svg">
+        <p>Manage your notifications settings</p>
+      </div>
+
+      <div onclick="gotoPassword()">
+        Manage Password
+        <img id="polygon" src="images/Setting_Polygon.svg">
+        <p>Update and reset your password</p>
+      </div>
+
+      <div onclick="gotoSupport()">
+        Help and Support
+        <img id="polygon" src="images/Setting_Polygon.svg">
+      </div>
+
+      <div onclick="gotoFAQs()">
+        FAQs
+        <img id="polygon" src="images/Setting_Polygon.svg">
+      </div>
+
+      <div onclick="gotoDelete()" style="color:#C9241B">
+        Delete Account
+        <img id="polygon" src="images/Setting_Polygon.svg">
+        <p>Deleting your account will remove all of your information from our database. This cannot be undone.</p>
+      </div>
+    </div>
+
+    <div>
+      <button id="save-btn">Save</button>
+      <button id="logout-btn">Log out</button>
+  </div>
+</body>
+
+<script>
+  function goToHome() {
+    // Redirect to Home
+    window.location.href = '/MainPage.html';
+  }
+  function goToLibrary() {
+    // Redirect to Library
+    window.location.href = '/Library.html';
+  }
+
+  function goToImageGen() {
+    // Redirect to ImageGen
+    window.location.href = '/ImageGen.html';
+  }
+
+  function goToUpgradePlan() {
+    // Redirect to UpgradePlan
+    window.location.href = '/UpgradePlan.html';
+  }
+
+  function goToSetting() {
+    // Redirect to Setting
+    window.location.href = '/Setting.html';
+  }
+
+  function gotoLanguage() {
+    // Redirect to Language Page
+    window.location.href = '/Setting-Language.html';
+  }
+
+  function gotoNotification() {
+    // Redirect to Notification Page
+    window.location.href = '/Setting-Notification.html';
+  }
+
+  function gotoPassword() {
+    // Redirect to Manage Password Page
+    window.location.href = '/Setting-Password.html';
+  }
+
+  function gotoSupport() {
+    // Redirect to Help and Support Page
+    window.location.href = '/Setting-Support.html';
+  }
+
+  function gotoFAQs() {
+    // Redirect to FAQs Page
+    window.location.href = '/Setting-FAQs.html';
+  }
+
+  function gotoDelete() {
+    // Redirect to Delete Account Page
+    window.location.href = '/Setting-Delete.html';
+  }
+</script>
+</html>

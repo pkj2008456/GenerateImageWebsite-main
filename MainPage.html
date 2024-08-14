@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="MainPage.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <title>Navigation Bar Example</title>
+</head>
+<body>
+  <div class="nav-bar">
+    <p> Image Generator</p> <br><br>
+    <div class="nav-item" onclick="goToHome()">
+      <i class="fa-solid fa-house"></i>
+      <span>Home</span>
+    </div>
+    <div class="nav-item" onclick="goToLibrary()">
+      <i class="fa-solid fa-icons"></i>
+      <span>Library</span>
+    </div>
+    <div class="nav-item" onclick="goToImageGen()">
+      <i class="fa-regular fa-image"></i>
+      <span>Image Generation</span>
+    </div>
+    <div class="nav-item" onclick="goToUpgradePlan()">
+      <i class="fa-solid fa-basket-shopping"></i>
+      <span>Upgrade Plan</span>
+    </div>
+    <div class="nav-item" onclick="goToSetting()">
+      <i class="fa-solid fa-gear"></i>
+      <span>Setting</span>
+    </div>
+  </div>
+
+  <div class="content">
+    <br>
+    <div class="search-container" >
+      <input type="text" placeholder="Search" class="search-input">
+      <button class="search-button">
+        <i class="fas fa-search"></i>
+      </button>
+      
+    </div>
+    <div class="profile-picture-button" onclick="showProfilePage()"></div>
+    <br><br><br>
+    <div class="button-container">
+      <button class="button active" onclick="showGallery('trending')">
+        <i class="fas fa-chart-line"></i>
+        Trending
+      </button>
+      <button class="button" onclick="showGallery('city')">
+        City
+      </button>
+      <button class="button" onclick="showGallery('photography')">
+        Photography
+      </button>
+      <button class="button" onclick="showGallery('anime')">
+        Anime
+      </button>
+    </div>
+    <div class="gallery" id="gallery">
+      <!-- Gallery content will be dynamically inserted here -->
+    </div>
+  </div>
+
+  <script>
+
+    function showProfilePage() {
+      window.location.href = '/Profile.html';
+    }
+
+    const galleryData = {
+      trending: [
+        { src: './images/MainPagePic1.png', alt: 'Image 1' },
+        { src: './images/MainPagePic2.png', alt: 'Image 2' },
+        { src: './images/MainPagePic3.png', alt: 'Image 3' },
+        { src: './images/MainPagePic4.png', alt: 'Image 4' },
+        { src: './images/MainPagePic5.png', alt: 'Image 5' },
+        { src: './images/MainPagePic6.png', alt: 'Image 6' },
+        { src: './images/MainPagePic7.png', alt: 'Image 7' },
+        { src: './images/MainPagePic9.png', alt: 'Image 9' }
+      ],
+      city: [
+      { src: './images/MainPageCity1.png', alt: 'Image 1' },
+      { src: './images/MainPageCity2.png', alt: 'Image 2' },
+      { src: './images/MainPageCity3.png', alt: 'Image 3' },
+      { src: './images/MainPageCity4.png', alt: 'Image 4' },
+      { src: './images/MainPageCity5.png', alt: 'Image 5' },
+      { src: './images/MainPageCity6.png', alt: 'Image 6' },
+      { src: './images/MainPageCity7.png', alt: 'Image 7' },
+      { src: './images/MainPageCity8.png', alt: 'Image 8' },
+      { src: './images/MainPageCity9.png', alt: 'Image 9' }
+      ],
+      photography: [
+        
+      ],
+      anime: [
+        
+      ]
+    };
+
+    function showGallery(category) {
+      const gallery = document.getElementById('gallery');
+      gallery.innerHTML = '';
+
+      const images = galleryData[category];
+      images.forEach(image => {
+        const img = document.createElement('img');
+        img.src = image.src;
+        img.alt = image.alt;
+        gallery.appendChild(img);
+      });
+
+      // Add active class to the clicked button
+      const buttons = document.querySelectorAll('.button');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      const clickedButton = document.querySelector(`.button[onclick="showGallery('${category}')"]`);
+      clickedButton.classList.add('active');
+    }
+
+    // Show the trending gallery by default
+    showGallery('trending');
+
+    function goToHome() {
+      window.location.href = '/MainPage.html';
+    }
+    function goToLibrary() {
+      window.location.href = '/Library.html';
+    }
+    function goToImageGen() {
+      window.location.href = '/ImageGen.html';
+    }
+    function goToUpgradePlan() {
+      window.location.href = '/UpgradePlan.html';
+    }
+    function goToSetting() {
+      window.location.href = '/Setting.html';
+    }
+  </script>
+</body>
+</html>

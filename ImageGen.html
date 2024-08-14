@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="ImageGen.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <title>Navigation Bar Example</title>
+
+</head>
+<body>
+  <div class="nav-bar">
+    <div class="nav-item" onclick="goToHome()">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>Home</span>
+    </div>
+
+    <div class="container"> 
+        <textarea id="prompt-text" maxlength="200" placeholder="Type a prompt..." color="#F5F7F9" spellcheck="false"></textarea>
+        <span id="vector" onclick="alert('Button clicked!');"><img src="./images/Vector.svg"></span>
+        <span id="upload" onclick="alert('Upload Button clicked!');"><i class="fa-solid fa-arrow-up-from-bracket"></i></span>
+    </div>
+    <div class="input">
+      <textarea id="prompt-text" maxlength="200" placeholder="Enter negative prompt..." color="#F5F7F9" spellcheck="false"></textarea>
+    </div>
+
+    <div class="dropdown">
+      <button onclick="dropdown()" class="dropbtn"></button>
+      <span id="downsymbol"><i class="fa fa-caret-down"></i></span>
+      <div id="style">Style<div>
+      <div id="myDropdown" class="dropdown-content">
+        <a id="Hyper_Realistic">Hyper Realistic</a>
+        <a id="Photography">Photography</a>
+        <a id="Cyberpunk">Cyberpunk</a>
+        <a id="Digital_Art">Digital Art</a>
+        <a id="Cartoon">Cartoon</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <h1>Image Gen</h1>
+    <p>This is the main content area of the website.</p>
+    <p>You can add your own content here.</p>
+  </div>
+</body>
+
+<script>
+  function goToHome() {
+    // Redirect to Home
+    window.location.href = '/MainPage.html';
+  }
+
+  function dropdown() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+
+  // Add this function to update the dropbtn text
+  function updateDropbtnText(text) {
+    document.querySelector('.dropbtn').textContent = text;
+  }
+
+  // Update the click event handler for the dropdown options
+  var dropdownOptions = document.querySelectorAll('.dropdown-content a');
+  dropdownOptions.forEach(function(option) {
+    option.addEventListener('click', function() {
+      var optionText = this.textContent;
+      updateDropbtnText(optionText);
+      dropdown(); // Close the dropdown after an option is selected
+    });
+  });
+  
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+        
+</script>
+</html>

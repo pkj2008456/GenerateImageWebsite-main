@@ -1,0 +1,81 @@
+ /* General Styles */
+ body {
+     margin: 0;
+    padding: 0;
+    background: linear-gradient(0deg, rgba(3, 18, 37, 1), rgba(7, 36, 73, 1));
+    height:100vh;
+    background-size: 100%;
+    color: #F5F7F9;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  /* Navigation Bar */
+  .nav-bar {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    color:#EDF2F6;
+    cursor: pointer;
+  }
+
+  .nav-bar i {
+    margin-right: 5px;
+  }
+
+  /* Plan Cards */
+  .plan-cards {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  .plan-card {
+    border-radius: 40px;
+    background: var(--Gradient-19365B---16273E, linear-gradient(90deg, #19365B 16.5%, #16273E 92.12%));
+    padding: 30px;
+    margin: 20px;
+    text-align: center;
+    width: 300px;
+    color: #F5F7F9;
+  }
+  
+  .plan-card:hover{
+  border-radius: 40px;
+  background: var(--Gradient-2C8CDA-0553AC, linear-gradient(90deg, #2C8BDA 39.55%, #0553AC 92.85%));
+  transform: scale(1.2);
+}
+
+  .plan-card h2 {
+    margin-top: 0;
+  }
+
+  .plan-card ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .plan-card li {
+    margin-bottom: 10px;
+  }
+
+  .plan-card button {
+    background-color: #F5F7F9;
+    color: #2C8BDA;
+    border-radius: 24px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+ 

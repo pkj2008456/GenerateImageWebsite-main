@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="Library.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <title>Image Generation</title>
+</head>
+<body>
+  <div class="nav-bar">
+    <p> Image Generator</p> <br><br>
+    <div class="nav-item" onclick="goToHome()">
+      <i class="fa-solid fa-house"></i>
+      <span>Home</span>
+    </div>
+    <div class="nav-item" onclick="goToLibrary()">
+      <i class="fa-solid fa-icons"></i>
+      <span>Library</span>
+    </div>
+    <div class="nav-item" onclick="goToImageGen()">
+      <i class="fa-regular fa-image"></i>
+      <span>Image Generation</span>
+    </div>
+    <div class="nav-item" onclick="goToUpgradePlan()">
+      <i class="fa-solid fa-basket-shopping"></i>
+      <span>Upgrade Plan</span>
+    </div>
+    <div class="nav-item" onclick="goToSetting()">
+      <i class="fa-solid fa-gear"></i>
+      <span>Setting</span>
+    </div>
+  </div>
+
+  <div class="content">
+    <p style="font-size: 25px"> Library</p>
+    <div class="profile-picture-button" onclick="showProfilePage()"></div>
+    <br>
+    <div class="button-container">
+      <button class="button active" onclick="showGallery('All')">
+        All
+      </button>
+      <button class="button" onclick="showGallery('Nature')">
+        Nature
+      </button>
+      <button class="button" onclick="showGallery('Anime')">
+        Anime
+      </button>
+    </div>
+    <div class="gallery" id="gallery">
+      <!-- Gallery content will be dynamically inserted here -->
+    </div>
+  </div>
+
+  <script>
+    const galleryData = {
+      All: [
+      { src: './images/LibraryAll1.png', alt: 'Image 1' },
+      { src: './images/LibraryAll2.png', alt: 'Image 2' },
+      { src: './images/LibraryAll3.png', alt: 'Image 3' },
+      { src: './images/LibraryAll4.png', alt: 'Image 4' },
+      { src: './images/LibraryAll5.png', alt: 'Image 5' },
+      { src: './images/LibraryAll6.png', alt: 'Image 6' },
+      { src: './images/LibraryAll7.png', alt: 'Image 7' },
+      { src: './images/LibraryAll8.png', alt: 'Image 8' },
+      { src: './images/LibraryAll9.png', alt: 'Image 9' },
+      { src: './images/LibraryAll10.png', alt: 'Image 10' }
+      ],
+      Nature: [
+      ],
+      Anime: [
+        
+      ]
+    };
+
+    function showProfilePage() {
+      window.location.href = '/Profile.html';
+    }
+
+    function showGallery(category) {
+      const gallery = document.getElementById('gallery');
+      gallery.innerHTML = '';
+
+      const images = galleryData[category];
+      images.forEach(image => {
+        const img = document.createElement('img');
+        img.src = image.src;
+        img.alt = image.alt;
+        gallery.appendChild(img);
+      });
+
+      // Add active class to the clicked button and remove it from others
+      const buttons = document.querySelectorAll('.button');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      const clickedButton = document.querySelector(`.button[onclick="showGallery('${category}')"]`);
+      clickedButton.classList.add('active');
+    }
+
+    // Show the trending gallery by default
+    showGallery('All');
+
+    function goToHome() {
+    // Redirect to Home
+    window.location.href = '/MainPage.html';
+  }
+  function goToLibrary() {
+    // Redirect to Library
+    window.location.href = '/Library.html';
+  }
+
+  function goToImageGen() {
+    // Redirect to ImageGen
+    window.location.href = '/ImageGen.html';
+  }
+
+  function goToUpgradePlan() {
+    // Redirect to UpgradePlan
+    window.location.href = '/UpgradePlan.html';
+  }
+
+  function goToSetting() {
+    // Redirect to Setting
+    window.location.href = '/Setting.html';
+  }
+  </script>
+</body>
+</html>
