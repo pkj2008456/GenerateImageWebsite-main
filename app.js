@@ -1,18 +1,24 @@
 const express = require('express');
 const path = require('path');
-const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('database/mydatabase.db'); 
 const app = express();
-const port = 3000;
 
-// 設置靜態文件夾
+// 设置 EJS 作为视图引擎
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+// 使用静态文件夹
+
 app.use(express.static(path.join(__dirname, 'public')));
 
-// 根路由回應 HTML 文件
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'MainPage.html'));
-});
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+// 导入路由
+const pageRoutes = require('./routes/pageRoutes');
+app.use('/', pageRoutes);
+
+const apiRoutes = require('./routes/apiRoutes');
+app.use('/api', apiRoutes);
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
