@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="ImageGen.css">
+  <link rel="stylesheet" href="css/ImageGen.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <title>Navigation Bar Example</title>
@@ -23,18 +23,28 @@
       <textarea id="prompt-text" maxlength="200" placeholder="Enter negative prompt..." color="#F5F7F9" spellcheck="false"></textarea>
     </div>
 
-    <div class="dropdown">
-      <button onclick="dropdown()" class="dropbtn"></button>
-      <span id="downsymbol"><i class="fa fa-caret-down"></i></span>
-      <div id="style">Style<div>
-      <div id="myDropdown" class="dropdown-content">
-        <a id="Hyper_Realistic">Hyper Realistic</a>
-        <a id="Photography">Photography</a>
-        <a id="Cyberpunk">Cyberpunk</a>
-        <a id="Digital_Art">Digital Art</a>
-        <a id="Cartoon">Cartoon</a>
+    <div>
+      <div class="dropdown">
+        <button onclick="dropdown()" class="dropbtn"></button>
+        <span id="downsymbol"><i class="fa fa-caret-down"></i></span>
+        <div id="style">Style<div>
+        <div id="myDropdown" class="dropdown-content">
+          <a id="Hyper_Realistic">Hyper Realistic</a>
+          <a id="Photography">Photography</a>
+          <a id="Cyberpunk">Cyberpunk</a>
+          <a id="Digital_Art">Digital Art</a>
+          <a id="Cartoon">Cartoon</a>
+        </div>
       </div>
     </div>
+
+    
+      <div class="gen-button">
+        <button id="generate-button">Generate</button>
+        <img id="generated-image" style="display:none;" />
+      </div>
+    
+    
   </div>
 
   <div class="content">
@@ -47,7 +57,7 @@
 <script>
   function goToHome() {
     // Redirect to Home
-    window.location.href = '/MainPage.html';
+    window.location.href = '/mainpage';
   }
 
   function dropdown() {
@@ -84,6 +94,35 @@ window.onclick = function(event) {
     }
   }
 }
+document.getElementById('generate-button').addEventListener('click', function() {
+  const prompt = document.getElementById('prompt-text').value;
+  const negativePrompt = document.getElementById('negative-prompt-text').value;
+  const style = document.querySelector('.dropbtn').textContent;
+
+  const data = {
+    prompt: prompt,
+    negative_prompt: negativePrompt,
+    style: style
+  };
+
+  fetch('/generate-image', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  .then(response => response.json())
+  .then(data => {
+    const imgElement = document.getElementById('generated-image');
+    imgElement.src = 'data:image/png;base64,' + data.images[0];
+    imgElement.style.display = 'block';
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    alert('Image generation failed.');
+  });
+});
         
 </script>
 </html>
