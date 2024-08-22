@@ -18,6 +18,8 @@ router.get('/profile', pageController.renderProfile);
 // 渲染设置页面
 router.get('/setting', pageController.renderSetting);
 
+router.get('/', pageController.renderMainPage);
+
 // 渲染升级计划页面
 router.get('/upgradeplan', pageController.renderUpgradePlan);
 
