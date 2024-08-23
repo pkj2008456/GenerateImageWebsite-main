@@ -1,127 +1,96 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <link rel="stylesheet" href="css/Library.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
   <title>Image Generation</title>
 </head>
-<body>
-  <div class="nav-bar">
-    <p> Image Generator</p> <br><br>
-    <div class="nav-item" onclick="goToHome()">
-      <i class="fa-solid fa-house"></i>
-      <span>Home</span>
-    </div>
-    <div class="nav-item" onclick="goToLibrary()">
-      <i class="fa-solid fa-icons"></i>
-      <span>Library</span>
-    </div>
-    <div class="nav-item" onclick="goToImageGen()">
-      <i class="fa-regular fa-image"></i>
-      <span>Image Generation</span>
-    </div>
-    <div class="nav-item" onclick="goToUpgradePlan()">
-      <i class="fa-solid fa-basket-shopping"></i>
-      <span>Upgrade Plan</span>
-    </div>
-    <div class="nav-item" onclick="goToSetting()">
-      <i class="fa-solid fa-gear"></i>
-      <span>Setting</span>
-    </div>
-  </div>
 
-  <div class="content">
-    <p style="font-size: 25px"> Library</p>
-    <div class="profile-picture-button" onclick="showProfilePage()"></div>
-    <br>
-    <div class="button-container">
-      <button class="button active" onclick="showGallery('All')">
-        All
-      </button>
-      <button class="button" onclick="showGallery('Nature')">
-        Nature
-      </button>
-      <button class="button" onclick="showGallery('Anime')">
-        Anime
-      </button>
-    </div>
-    <div class="gallery" id="gallery">
-      <!-- Gallery content will be dynamically inserted here -->
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Navigation Bar -->
+      <div class="col-2 p-4">
+        <div class="nav-bar">
+          <p style="color: aliceblue; padding-top: 15px;">Image Generator</p>
+          <div class="nav-item" onclick="goToHome()">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+          </div>
+          <div class="nav-item" onclick="goToLibrary()">
+            <i class="fa-solid fa-icons"></i>
+            <span>Library</span>
+          </div>
+          <div class="nav-item" onclick="goToImageGen()">
+            <i class="fa-regular fa-image"></i>
+            <span>Image Generation</span>
+          </div>
+          <div class="nav-item" onclick="goToUpgradePlan()">
+            <i class="fa-solid fa-basket-shopping"></i>
+            <span>Upgrade Plan</span>
+          </div>
+          <div class="nav-item" onclick="goToSetting()">
+            <i class="fa-solid fa-gear"></i>
+            <span>Setting</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content Area -->
+      <div class="col-10 p-4" style="margin-left: 350px;">
+        <h1 style="text-align: center; color: aliceblue;">Generations</h1>
+        <div class="generations-card mt-4">
+          
+          <div class="row" id="generation-row" style="justify-content: space-around;">
+            <!-- Images will be dynamically inserted here -->
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
-    const galleryData = {
-      All: [
-      { src: './images/LibraryAll1.png', alt: 'Image 1' },
-      { src: './images/LibraryAll2.png', alt: 'Image 2' },
-      { src: './images/LibraryAll3.png', alt: 'Image 3' },
-      { src: './images/LibraryAll4.png', alt: 'Image 4' },
-      { src: './images/LibraryAll5.png', alt: 'Image 5' },
-      { src: './images/LibraryAll6.png', alt: 'Image 6' },
-      { src: './images/LibraryAll7.png', alt: 'Image 7' },
-      { src: './images/LibraryAll8.png', alt: 'Image 8' },
-      { src: './images/LibraryAll9.png', alt: 'Image 9' },
-      { src: './images/LibraryAll10.png', alt: 'Image 10' }
-      ],
-      Nature: [
-      ],
-      Anime: [
-        
-      ]
-    };
+    const imageUrls = JSON.parse(decodeURIComponent('<%= imageUrls %>'));
 
-    function showProfilePage() {
-      window.location.href = '/profile';
-    }
+    console.log(imageUrls.length);
 
-    function showGallery(category) {
-      const gallery = document.getElementById('gallery');
-      gallery.innerHTML = '';
-
-      const images = galleryData[category];
-      images.forEach(image => {
-        const img = document.createElement('img');
-        img.src = image.src;
-        img.alt = image.alt;
-        gallery.appendChild(img);
+    document.addEventListener("DOMContentLoaded", function () {
+      const generationRow = document.getElementById('generation-row');
+      imageUrls.forEach(image => {
+        const imgElement = document.createElement('div');
+        imgElement.className = 'col-3 generation-item';
+        imgElement.style.justifyContent = "space-around";
+        imgElement.innerHTML = `<img src="${image.url}" alt="${image.alt}" class="img-fluid">`; // 使用 class img-fluid
+        generationRow.appendChild(imgElement);
       });
-
-      // Add active class to the clicked button and remove it from others
-      const buttons = document.querySelectorAll('.button');
-      buttons.forEach(btn => btn.classList.remove('active'));
-      const clickedButton = document.querySelector(`.button[onclick="showGallery('${category}')"]`);
-      clickedButton.classList.add('active');
-    }
-
-    // Show the trending gallery by default
-    showGallery('All');
+    });
 
     function goToHome() {
-    // Redirect to Home
-    window.location.href = '/MainPage';
-  }
-  function goToLibrary() {
-    // Redirect to Library
-    window.location.href = '/library';
-  }
+      window.location.href = '/mainpage';
+    }
 
-  function goToImageGen() {
-    // Redirect to ImageGen
-    window.location.href = '/imagegen';
-  }
+    function goToLibrary() {
+      window.location.href = '/library';
+    }
 
-  function goToUpgradePlan() {
-    // Redirect to UpgradePlan
-    window.location.href = '/upgradeplan';
-  }
+    function goToImageGen() {
+      window.location.href = '/imagegen';
+    }
 
-  function goToSetting() {
-    // Redirect to Setting
-    window.location.href = '/setting';
-  }
+    function goToUpgradePlan() {
+      window.location.href = '/upgradeplan';
+    }
+
+    function goToSetting() {
+      window.location.href = '/setting';
+    }
   </script>
 </body>
+
 </html>

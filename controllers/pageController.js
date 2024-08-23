@@ -14,15 +14,21 @@ exports.renderLibrary = (req, res) => {
     const userFolder = path.join(__dirname, '..', 'public', 'images', 'gen_img', userId); // 生成用户文件夹路径
     console.log('userFolder:', userFolder);
 
+
     // 读取用户文件夹中的图片
     fs.readdir(userFolder, (err, files) => {
         if (err) {
-            res.status(500).send('Error reading user images:', err);
+            res.status(500).send('Error reading user images');
             return;
         }
 
-        const imageUrls = files.map(file => `/user_folders/${userId}/${file}`);
-        res.render('Library', { userId, imageUrls });
+        const imageUrls = files.map(file => ({
+            url: `./images/gen_img/${userId}/${file}`,
+            alt: file
+        }));
+        const encodedImageUrls = encodeURIComponent(JSON.stringify(imageUrls));
+        console.log(imageUrls.length, 'imageUrls:', imageUrls, 'is array?:', Array.isArray(imageUrls));
+        res.render('Library', { userId, imageUrls: encodedImageUrls });
     });
 };
 
@@ -62,7 +68,6 @@ exports.renderProfile = (req, res) => {
     const userFolder = path.join(__dirname, '..', 'public', 'images', 'gen_img', userId); // 生成用户文件夹路径
     console.log('userFolder:', userFolder);
 
-
     // 读取用户文件夹中的图片
     fs.readdir(userFolder, (err, files) => {
         if (err) {
@@ -77,6 +82,8 @@ exports.renderProfile = (req, res) => {
         const encodedImageUrls = encodeURIComponent(JSON.stringify(imageUrls));
         const imgLength = imageUrls.length;
         console.log(imageUrls.length, 'imageUrls:', imageUrls, 'is array?:', Array.isArray(imageUrls));
-        res.render('profile', { imgLength,userId, imageUrls: encodedImageUrls });
+
+        // 将 imgLength 传递给 EJS 模板
+        res.render('profile', { imgLength, userId, imageUrls: encodedImageUrls });
     });
 };
