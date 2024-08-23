@@ -1,4 +1,3 @@
-// routes/pageRoutes.js
 const express = require('express');
 const router = express.Router();
 const pageController = require('../controllers/pageController');
@@ -18,10 +17,14 @@ router.get('/profile', pageController.renderProfile);
 // 渲染设置页面
 router.get('/setting', pageController.renderSetting);
 
+router.get('/', pageController.renderLogin);
+
 // 渲染升级计划页面
 router.get('/upgradeplan', pageController.renderUpgradePlan);
 
 router.get('/', pageController.renderMainPage);
-
+// 登录页面和处理登录
+router.get('/login', pageController.renderLogin);
+router.post('/login', pageController.handleLogin);
 
 module.exports = router;
