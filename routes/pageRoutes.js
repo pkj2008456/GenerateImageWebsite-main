@@ -21,4 +21,7 @@ router.get('/setting', pageController.renderSetting);
 // 渲染升级计划页面
 router.get('/upgradeplan', pageController.renderUpgradePlan);
 
+router.get('/', pageController.renderMainPage);
+
+
 module.exports = router;
