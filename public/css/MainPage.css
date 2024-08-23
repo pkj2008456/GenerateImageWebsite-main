@@ -172,7 +172,7 @@ img {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-image: url('./images/ProfilePicture.png');
+  background-image: url('../images/ProfilePicture.png');
   background-size: cover;
   background-position: center;
   cursor: pointer;

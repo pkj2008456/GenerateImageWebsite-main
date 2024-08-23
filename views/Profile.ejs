@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <link rel="stylesheet" href="css/Profile.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -7,152 +8,102 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <title>Image Generation</title>
 </head>
+
 <body>
-  <div class="nav-bar">
-    <p> Image Generator</p> <br><br>
-    <div class="nav-item" onclick="goToHome()">
-      <i class="fa-solid fa-house"></i>
-      <span>Home</span>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Navigation Bar -->
+      <div class="col-2 p-4">
+        <div class="nav-bar">
+          <p style="color: aliceblue; padding-top: 15px;">Image Generator</p>
+          <div class="nav-item" onclick="goToHome()">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+          </div>
+          <div class="nav-item" onclick="goToLibrary()">
+            <i class="fa-solid fa-icons"></i>
+            <span>Library</span>
+          </div>
+          <div class="nav-item" onclick="goToImageGen()">
+            <i class="fa-regular fa-image"></i>
+            <span>Image Generation</span>
+          </div>
+          <div class="nav-item" onclick="goToUpgradePlan()">
+            <i class="fa-solid fa-basket-shopping"></i>
+            <span>Upgrade Plan</span>
+          </div>
+          <div class="nav-item" onclick="goToSetting()">
+            <i class="fa-solid fa-gear"></i>
+            <span>Setting</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content Area -->
+      <div class="col-10 p-4" style="margin-left: 350px;">
+        <!-- Profile Section -->
+        <div class="profile-card d-flex align-items-center">
+          <img src="https://via.placeholder.com/100" alt="Avatar" class="avatar">
+          <div class="profile-info" style="padding-left: 20px;">
+            <h3 class="text-white">
+              <%= userId %>
+            </h3>
+            <p class="text-white">Digital Creator</p>
+            <p class="text-white"><%=imgLength %> Generations</p>
+          </div>
+        </div>
+
+        <!-- Generations Section -->
+        <div class="generations-card mt-4">
+          <h5 style="color: aliceblue;display:inline-block">Generations</h5>
+          <a href="/library" style="margin-left: 75%;color: aliceblue;cursor: pointer;">see all</a>
+          <div class="row" id="generation-row"  style="justify-content: space-around;">
+            <!-- Images will be dynamically inserted here -->
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="nav-item" onclick="goToLibrary()">
-      <i class="fa-solid fa-icons"></i>
-      <span>Library</span>
-    </div>
-    <div class="nav-item" onclick="goToImageGen()">
-      <i class="fa-regular fa-image"></i>
-      <span>Image Generation</span>
-    </div>
-    <div class="nav-item" onclick="goToUpgradePlan()">
-      <i class="fa-solid fa-basket-shopping"></i>
-      <span>Upgrade Plan</span>
-    </div>
-    <div class="nav-item" onclick="goToSetting()">
-      <i class="fa-solid fa-gear"></i>
-      <span>Setting</span>
-    </div>
-  </div>
-
-  <div class="content">
-
-    <div class="twPc-div">
-    <a class="twPc-bg twPc-block"></a>
-
-	<div>
-		<div class="twPc-button">
-            <!-- Twitter Button | you can get from: https://about.twitter.com/tr/resources/buttons#follow -->
-            <a href="https://twitter.com/mertskaplan" class="twitter-follow-button" data-show-count="false" data-size="large" data-show-screen-name="false" data-dnt="true">Follow @mertskaplan</a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-            <!-- Twitter Button -->   
-		</div>
-
-		<a title="Mert S. Kaplan" href="https://twitter.com/mertskaplan" class="twPc-avatarLink">
-			<img alt="Mert S. Kaplan" src="https://mertskaplan.com/wp-content/plugins/msk-twprofilecard/img/mertskaplan.jpg" class="twPc-avatarImg">
-		</a>
-
-		<div class="twPc-divUser">
-			<div class="twPc-divName">
-				<a href="https://twitter.com/mertskaplan">Mert S. Kaplan</a>
-			</div>
-			<span>
-				<a href="https://twitter.com/mertskaplan">@<span>mertskaplan</span></a>
-			</span>
-		</div>
-
-		<div class="twPc-divStats">
-			<ul class="twPc-Arrange">
-				<li class="twPc-ArrangeSizeFit">
-					<a href="https://twitter.com/mertskaplan" title="9.840 Tweet">
-						<span class="twPc-StatLabel twPc-block">Tweets</span>
-						<span class="twPc-StatValue">9.840</span>
-					</a>
-				</li>
-				<li class="twPc-ArrangeSizeFit">
-					<a href="https://twitter.com/mertskaplan/following" title="885 Following">
-						<span class="twPc-StatLabel twPc-block">Following</span>
-						<span class="twPc-StatValue">885</span>
-					</a>
-				</li>
-				<li class="twPc-ArrangeSizeFit">
-					<a href="https://twitter.com/mertskaplan/followers" title="1.810 Followers">
-						<span class="twPc-StatLabel twPc-block">Followers</span>
-						<span class="twPc-StatValue">1.810</span>
-					</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-</div>
-    
   </div>
 
   <script>
-    const galleryData = {
-      All: [
-      { src: './images/LibraryAll1.png', alt: 'Image 1' },
-      { src: './images/LibraryAll2.png', alt: 'Image 2' },
-      { src: './images/LibraryAll3.png', alt: 'Image 3' },
-      { src: './images/LibraryAll4.png', alt: 'Image 4' },
-      { src: './images/LibraryAll5.png', alt: 'Image 5' },
-      { src: './images/LibraryAll6.png', alt: 'Image 6' },
-      { src: './images/LibraryAll7.png', alt: 'Image 7' },
-      { src: './images/LibraryAll8.png', alt: 'Image 8' },
-      { src: './images/LibraryAll9.png', alt: 'Image 9' },
-      { src: './images/LibraryAll10.png', alt: 'Image 10' }
-      ],
-      Nature: [
-      ],
-      Anime: [
-        
-      ]
-    };
+    const imageUrls = JSON.parse(decodeURIComponent('<%= imageUrls %>'));
+    
+    console.log(imageUrls.length);
 
-    function showProfilePage() {
-      window.location.href = '/Profile.html';
-    }
-
-    function showGallery(category) {
-      const gallery = document.getElementById('gallery');
-      gallery.innerHTML = '';
-
-      const images = galleryData[category];
-      images.forEach(image => {
-        const img = document.createElement('img');
-        img.src = image.src;
-        img.alt = image.alt;
-        gallery.appendChild(img);
+    document.addEventListener("DOMContentLoaded", function () {
+      const generationRow = document.getElementById('generation-row');
+      const firstThreeImages = imageUrls.slice(0, 3);
+      firstThreeImages.forEach(image => {
+        const imgElement = document.createElement('div');
+        imgElement.className = 'col-3 generation-item';
+        imgElement.style.justifyContent = "space-around";
+        imgElement.innerHTML = `<img src="${image.url}" alt="${image.alt}" class="img-fluid">`;
+        generationRow.appendChild(imgElement);
       });
-
-      // Add active class to the clicked button and remove it from others
-      const buttons = document.querySelectorAll('.button');
-      buttons.forEach(btn => btn.classList.remove('active'));
-      const clickedButton = document.querySelector(`.button[onclick="showGallery('${category}')"]`);
-      clickedButton.classList.add('active');
-    }
-
-    // Show the trending gallery by default
-    showGallery('All');
+    });
 
     function goToHome() {
       window.location.href = '/mainpage';
     }
+
     function goToLibrary() {
       window.location.href = '/library';
     }
+
     function goToImageGen() {
       window.location.href = '/imagegen';
     }
+
     function goToUpgradePlan() {
       window.location.href = '/upgradeplan';
     }
+
     function goToSetting() {
       window.location.href = '/setting';
     }
   </script>
 </body>
+
 </html>
