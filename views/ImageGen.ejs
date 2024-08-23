@@ -5,8 +5,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="css/ImageGen.css">
-  <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" /> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <title>Navigation Bar Example</title>
 
 </head>
@@ -56,8 +56,9 @@
         <div>
           <button id="dimensionsButton" class="dropbtn">
             Select Dimensions
-            <span class="downsymbol"><i class="fa fa-caret-down"></i></span>
           </button>
+          <span class="downsymbol"><i class="fa fa-caret-down"></i></span>
+
           <div id="dimensionsDropdown" class="dropdown-content">
             <a href="#" class="dropdown-option">Small</a>
             <a href="#" class="dropdown-option">Medium</a>
@@ -111,10 +112,51 @@
         </div>
 
       </div>
+
+<!--       
       <div class="margin-block">
         Number of Image
         <input type="number" class="item-backgroudColor item-text-color" value="0">
-      </div>
+      </div> -->
+      <div class="d-flex flex-row justify-content-between mt-n1">
+
+        <div class="item-backgroudColor">
+            <input type="radio" class="btn-check " name="batchs" id="batch1" autocomplete="off" data-batch="1"  >
+            <label class="btn  number-of-iamge" for="batch1" >
+                <div class="item-text-color">
+                    <div>1</div>
+                
+                </div>
+            </label>
+        </div>
+        <div class="item-backgroudColor ">
+            <input type="radio" class="btn-check " name="batchs" id="batch2" autocomplete="off" data-batch="2"  >
+            <label class="btn number-of-iamge" for="batch2" >
+                <div class="item-text-color">
+                    <div>2</div>
+            
+                </div>
+            </label>
+        </div>
+        <div class="item-backgroudColor">
+            <input type="radio" class="btn-check " name="batchs" id="batch3" autocomplete="off" data-batch="3"  disabled >
+            <label class="btn number-of-iamge" for="batch3" >
+                <div class="item-text-color">
+                    <div>3</div>
+                </div>
+            </label>
+        </div>
+        <div class="item-backgroudColor">
+            <input type="radio" class="btn-check " name="batchs" id="batch4" autocomplete="off" data-batch="4" disabled >
+            <label class="btn number-of-iamge" for="batch4">
+                <div class="item-text-color">
+                    <div>4</div>
+                </div>
+            </label>
+        </div>
+    </div>
+
+
     </div>
 
 
@@ -153,27 +195,8 @@
     </div>
 
     <div class="d-flex justify-content-between" id="imageBox">
-      <div class="image-card"><img src="" alt=""></div>
-      <div class="image-card"><img src="" alt=""></div>
-      <div class="image-card"><img src="" alt=""></div>
-      <div class="image-card"><img src="" alt=""></div>
     </div>
 
-    <!-- <div class="d-flex flex-row justify-content-between margin-block">
-      <div>A girl wearing red dress in the forest</div>
-      <div class="d-flex flex-row justify-content-between">
-        <div class="mr-2">888</div>
-        <div class="mr-2">Hyper Realistic</div>
-        <div>1:1</div>
-      </div>
-    </div>
-
-    <div class="d-flex justify-content-between">
-      <div class="image-card"><img src="" alt=""></div>
-      <div class="image-card"><img src="" alt=""></div>
-      <div class="image-card"><img src="" alt=""></div>
-      <div class="image-card"><img src="" alt=""></div>
-    </div> -->
 
   </div>
 </body>
@@ -183,27 +206,33 @@
 
 
 <script>
+
+let testImageJson = {
+  "testImageJson": [
+    {
+      "base64": "./images/LibraryAll1.png"
+    },
+    {
+      "base64": "./images/LibraryAll2.png"
+    },
+    {
+      "base64": "./images/LibraryAll1.png"
+    },
+    {
+      "base64": "./images/LibraryAll1.png"
+    }
+  ]
+}
+
 installGenImage(testImageJson.testImageJson);
   function installGenImage(imagePath){
     const imageBox = document.getElementById("imageBox");
     imagePath.forEach((path)=>{
-      imageBox.innerHTML += `<div class="image-card"><img src="${imagePath.base64}" alt=""></div> `;
+      imageBox.innerHTML += `<div class="image-card"><img src="${path.base64}" alt=""></div> `;
     })
   }
   
-  let testImageJson = {
-  "testImageJson": [
-    {
-      "base64": "LibraryAll1.png"
-    },
-    {
-      "base64": "LibraryAll2.png"
-    },
-    {
-      "base64": "LibraryAll3.png"
-    }
-  ]
-}
+
 
   function goToHome() {
     window.location.href = '/mainpage';
