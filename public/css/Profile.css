@@ -7,10 +7,11 @@ body {
     height: 100vh;
     color: #F5F7F9;
     font-family: 'Poppins', sans-serif;
+    
 }
 
 .nav-bar {
-    width: 350px;
+
     height: 100%;
     background-color: #031225;
     position: fixed;
@@ -64,6 +65,7 @@ body {
     padding: 20px;
     border-radius: 15px;
     margin-top: 20px;
+    
 }
 
 .generation-item {
