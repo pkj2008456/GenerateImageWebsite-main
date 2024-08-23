@@ -46,17 +46,20 @@
         <!-- Profile Section -->
         <div class="profile-card d-flex align-items-center">
           <img src="https://via.placeholder.com/100" alt="Avatar" class="avatar">
-            <div class="profile-info" style="padding-left: 20px;">
-              <h3 class="text-white">Username</h3>
-              <p class="text-white">Digital Creator</p>
-              <p class="text-white">10 Generations</p>
-            </div>
+          <div class="profile-info" style="padding-left: 20px;">
+            <h3 class="text-white">
+              <%= userId %>
+            </h3>
+            <p class="text-white">Digital Creator</p>
+            <p class="text-white"><%=imgLength %> Generations</p>
+          </div>
         </div>
 
         <!-- Generations Section -->
         <div class="generations-card mt-4">
-          <h5>Generations</h5>
-          <div class="row" id="generation-row">
+          <h5 style="color: aliceblue;display:inline-block">Generations</h5>
+          <a href="/library" style="margin-left: 75%;color: aliceblue;cursor: pointer;">see all</a>
+          <div class="row" id="generation-row"  style="justify-content: space-around;">
             <!-- Images will be dynamically inserted here -->
           </div>
         </div>
@@ -65,22 +68,18 @@
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const imageUrls = [
-        { url: 'https://via.placeholder.com/265', alt: 'Generation 1' },
-        { url: 'https://via.placeholder.com/265', alt: 'Generation 2' },
-        { url: 'https://via.placeholder.com/265', alt: 'Generation 3' },
-        { url: 'https://via.placeholder.com/265', alt: 'Generation 4' },
-        { url: 'https://via.placeholder.com/265', alt: 'Generation 5' },
-        { url: 'https://via.placeholder.com/265', alt: 'Generation 6' },
-      ];
+    const imageUrls = JSON.parse(decodeURIComponent('<%= imageUrls %>'));
+    
+    console.log(imageUrls.length);
 
+    document.addEventListener("DOMContentLoaded", function () {
       const generationRow = document.getElementById('generation-row');
-
-      imageUrls.forEach(image => {
+      const firstThreeImages = imageUrls.slice(0, 3);
+      firstThreeImages.forEach(image => {
         const imgElement = document.createElement('div');
         imgElement.className = 'col-3 generation-item';
-        imgElement.innerHTML = `<img src="${image.url}" alt="${image.alt}" class ="img-fluid">`;
+        imgElement.style.justifyContent = "space-around";
+        imgElement.innerHTML = `<img src="${image.url}" alt="${image.alt}" class="img-fluid">`;
         generationRow.appendChild(imgElement);
       });
     });

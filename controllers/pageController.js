@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 
 exports.renderMainPage = (req, res) => {
     console.log('req.session.userId:', req.session.userId);
@@ -10,12 +11,13 @@ exports.renderLibrary = (req, res) => {
     if (!userId) {
         return res.redirect('/login'); // 如果没有登录，重定向到登录页
     }
-    const userFolder = `path/to/user_folders/${userId}`;
+    const userFolder = path.join(__dirname, '..', 'public', 'images', 'gen_img', userId); // 生成用户文件夹路径
+    console.log('userFolder:', userFolder);
 
     // 读取用户文件夹中的图片
     fs.readdir(userFolder, (err, files) => {
         if (err) {
-            res.status(500).send('Error reading user images');
+            res.status(500).send('Error reading user images:', err);
             return;
         }
 
@@ -57,7 +59,9 @@ exports.renderProfile = (req, res) => {
     if (!userId) {
         return res.redirect('/login'); // 如果没有登录，重定向到登录页
     }
-    const userFolder = `path/to/user_folders/${userId}`;
+    const userFolder = path.join(__dirname, '..', 'public', 'images', 'gen_img', userId); // 生成用户文件夹路径
+    console.log('userFolder:', userFolder);
+
 
     // 读取用户文件夹中的图片
     fs.readdir(userFolder, (err, files) => {
@@ -66,7 +70,13 @@ exports.renderProfile = (req, res) => {
             return;
         }
 
-        const imageUrls = files.map(file => `/user_folders/${userId}/${file}`);
-        res.render('profile', { userId, imageUrls });
+        const imageUrls = files.map(file => ({
+            url: `./images/gen_img/${userId}/${file}`,
+            alt: file
+        }));
+        const encodedImageUrls = encodeURIComponent(JSON.stringify(imageUrls));
+        const imgLength = imageUrls.length;
+        console.log(imageUrls.length, 'imageUrls:', imageUrls, 'is array?:', Array.isArray(imageUrls));
+        res.render('profile', { imgLength,userId, imageUrls: encodedImageUrls });
     });
 };
