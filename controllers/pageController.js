@@ -31,7 +31,7 @@ exports.renderLibrary = (req, res) => {
             alt: file
         }));
         const encodedImageUrls = encodeURIComponent(JSON.stringify(imageUrls));
-        console.log(imageUrls.length, 'imageUrls:', imageUrls, 'is array?:', Array.isArray(imageUrls));
+        // console.log(imageUrls.length, 'imageUrls:', imageUrls, 'is array?:', Array.isArray(imageUrls));
         res.render('Library', { userId, imageUrls: encodedImageUrls });
     });
 };
