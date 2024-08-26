@@ -1,162 +1,212 @@
 /* Using @import */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
 body {
   margin: 0;
   padding: 0;
   background: linear-gradient(0deg, rgba(3, 18, 37, 0.95), rgba(7, 36, 73, 0.95));
-  height:100vh;
+  height: 100vh;
   background-size: 100%;
   color: #F5F7F9;
   font-family: 'Poppins', sans-serif;
-  }
-
-@font-face {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
-    src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap') format('woff2');
-}
-@font-face {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 700;
-    src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap') format('woff2');
-  }
-
-
-
-  .nav-bar {
-    width: 350px;
-    height: 100%;
-    background-color: #031225;
-    position: fixed;
-    left: 0;
-    top: 0;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  .nav-bar .nav-item {
-    display: flex;
-    align-items: center;
-    color: #EDF2F6;
-    text-decoration: none;
-    padding: 10px;
-    margin-bottom: 10px;
-    cursor: pointer;
-  }
-  
-  .nav-bar .nav-item:hover {
-    background-color: #555;
-  }
-  
-  .nav-bar .nav-item i {
-    margin-right: 30px;
-  }
-
-
-  .nav-bar a {
-    display: block;
-    color: white;
-    text-decoration: none;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-
-  .nav-bar a:hover {
-    background-color: #555;
-  }
-
-  .content {
-    margin-left: 360px;
-    padding: 20px;
-  }
-
-p{
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
 }
 
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap') format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap') format('woff2');
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input {
+  border-radius: 18px;
+  width: 100%;
+  padding: 0.4rem;
+  border: none;
+}
+
+.item-backgroudColor {
+  background-color: #0F1D2F;
+}
+
+.item-text-color {
+  color: #EDF2F6;
+}
+
+.button-size {
+  width: 4re, ;
+}
+
+.nav-bar {
+  width: 350px;
+  height: 100%;
+  background-color: #031225;
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  z-index: 0;
+}
+
+.nav-bar .nav-item {
+  display: flex;
+  align-items: center;
+  color: #EDF2F6;
+  text-decoration: none;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.nav-bar-item {
+  display: block;
+  height: 83%;
+  overflow: scroll;
+  scrollbar-width: none;
+}
+
+.nav-bar .nav-item:hover {
+  background-color: #555;
+}
+
+.nav-bar .nav-item i {
+  margin-right: 30px;
+}
+
+.gen-image-meassage{
+  padding: 0.2rem 0.3rem;
+  border-radius: 5rem;
+  border:  0.07rem solid #F5F7F9;
+}
+.nav-bar a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.nav-bar a:hover {
+  background-color: #555;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 360px;
+  padding: 20px;
+  height: 100vh;
+}
+
+p {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+
+
+textarea {
+  overflow: hidden;
+}
 
 textarea::placeholder {
-    color: #F5F7F9;
+  color: #F5F7F9;
 }
 
-.container {
-  position:relative;
-  width: 300px;
+
+.textarea-prompt-container {
+  position: relative;
   height: 150px;
 }
 
-.input {
+.textarea-nprompt-container {
   position: relative;
-  margin-block: 20px;
-  width:300px;
   height: 50px;
 }
 
+.margin-block {
+  margin-block: 1.5rem;
+}
+
 #vector {
-  position:absolute;
+  position: absolute;
   top: 15px;
-  right:15px;
+  right: 15px;
   background: transparent;
 }
 
 #upload {
-  position:absolute;
+  position: absolute;
   top: 110px;
-  right:15px;
+  right: 15px;
   background: transparent;
+
+}
+
+.marginTop {
+  margin-top: 1.5rem;
 }
 
 textarea {
   position: relative;
-  box-sizing:border-box;
-  padding:5%;
+  box-sizing: border-box;
+  padding: 5%;
   height: 100%;
   width: 100%;
   resize: none;
-  outline: none; /* add this to stop highlight on focus */
+  outline: none;
+  /* add this to stop highlight on focus */
   border: none;
-  border-radius: 24px;
+  border-radius: 18px;
   background: #0F1D2F;
   color: #F5F7F9;
 }
 
-.dropdown {
-  float: left;
-  overflow: hidden;
-  width: 300px;
+.image-dropdown {
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  background-color: #0F1D2F;
+  border-radius: 18px;
 }
 
-.dropdown .dropbtn {
-  cursor: pointer; 
+.gen-button {
+  display: block;
+  height: 10%;
+
+}
+
+.select-top-text {
+  padding-left: 14px;
+  padding-top: 5px;
+  font-size: 10px;
+}
+
+.image-dropdown .dropbtn {
+  cursor: pointer;
   font-family: 'Poppins', sans-serif;
   border: none;
   outline: none;
   color: #F5F7F9;
-  padding: 14px 16px;
+  padding-left: 14px;
   background-color: #0F1D2F;
   text-align: left;
   margin: 0;
-  width: 100%;
-  height: 70px;
-  border-radius: 24px;
-}
-
-#style{
-  position:absolute;
-  font-size: 10px;
-  color: #F5F7F9;
-  top: 320px;
-  left: 40px;
-}
-
-#downsymbol{
-  position:absolute;
-  top: 335px;
-  left: 290px;
-  background: transparent;
-  
+  width: 90%;
+  border-radius: 18px;
 }
 
 .dropdown-content {
@@ -165,11 +215,14 @@ textarea {
   background-color: #0F1D2F;
   min-width: 300px;
   z-index: 1;
-  border-radius: 24px;
+  border-radius: 18px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(10px);
 }
 
+.number-of-iamge{
+  width: 4.2rem;
+}
 
 .dropdown-content a {
   float: none;
@@ -179,12 +232,35 @@ textarea {
   color: #F5F7F9;
   font: popp;
   padding: 12px 16px;
-  border-radius: 24px;
+  border-radius: 18px;
   text-decoration: none;
   display: block;
   text-align: left;
 }
 
+#generate-button {
+  width: 100%;
+  height: 3.5rem;
+  border-radius: 18px;
+  
+}
+
 .show {
   display: block;
 }
+
+.image-card {
+  width: 14.5rem;
+  height: 14.5rem;
+  border-radius: 18px;
+  margin-right: 1rem;
+}
+
+.image-card img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+
