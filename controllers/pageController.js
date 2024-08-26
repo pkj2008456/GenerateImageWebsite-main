@@ -3,6 +3,10 @@ const path = require('path');
 
 exports.renderMainPage = (req, res) => {
     console.log('req.session.userId:', req.session.userId);
+    const userId = req.session.userId;
+    if (!userId) {
+        return res.redirect('/login'); // 如果没有登录，重定向到登录页
+    }
     res.render('MainPage');
 };
 
@@ -33,14 +37,26 @@ exports.renderLibrary = (req, res) => {
 };
 
 exports.renderImageGen = (req, res) => {
+    const userId = req.session.userId;
+    if (!userId) {
+        return res.redirect('/login'); // 如果没有登录，重定向到登录页
+    }
     res.render('ImageGen');
 };
 
 exports.renderSetting = (req, res) => {
+    const userId = req.session.userId;
+    if (!userId) {
+        return res.redirect('/login'); // 如果没有登录，重定向到登录页
+    }
     res.render('Setting');
 };
 
 exports.renderUpgradePlan = (req, res) => {
+    const userId = req.session.userId;
+    if (!userId) {
+        return res.redirect('/login'); // 如果没有登录，重定向到登录页
+    }
     res.render('UpgradePlan');
 };
 
