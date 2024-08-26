@@ -253,6 +253,7 @@ textarea {
   width: 14.5rem;
   height: 14.5rem;
   border-radius: 18px;
+  margin-right: 1rem;
 }
 
 .image-card img{

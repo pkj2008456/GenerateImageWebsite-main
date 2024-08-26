@@ -1,30 +1,17 @@
 
-let testImageJson = {
-    "testImageJson": [
-      {
-        "base64": "./images/LibraryAll1.png"
-      },
-      {
-        "base64": "./images/LibraryAll2.png"
-      },
-      {
-        "base64": "./images/LibraryAll1.png"
-      },
-      {
-        "base64": "./images/LibraryAll1.png"
-      }
-    ]
-  }
-  
-  installGenImage(testImageJson.testImageJson);
-    function installGenImage(imagePath){
+
+    function installGenImage(data){
       const imageBox = document.getElementById("imageBox");
-      imagePath.forEach((path)=>{
-        imageBox.innerHTML += `<div class="image-card"><img src="${path.base64}" alt=""></div> `;
+      data.images.forEach((imageData) => {
+        imageBox.innerHTML += `<div class="image-card"><img src="data:image/png;base64,${imageData}" ></div> `;
       })
-    }
+    };
     
-  
+    //when user click gen button that will remove before generate image
+    function removeGenImage (){
+      const imageBox = document.getElementById("imageBox");
+      imageBox.innerHTML = "";
+    }
   
     function goToHome() {
       window.location.href = '/mainpage';
@@ -87,6 +74,7 @@ let testImageJson = {
       let prompt = document.getElementById('prompt-text').value;
       let negativePrompt = document.getElementById('negative-prompt-text').value;
       let style = document.querySelector('.dropbtn').textContent;
+      let batch =  document.querySelector('input[name="batchs"]:checked').dataset.batch;
       let size = document.querySelector('input[name="options"]:checked');
       let width = size.dataset.width;
       let height = size.dataset.height;
@@ -102,14 +90,14 @@ let testImageJson = {
         "cfg_scale": 2,
         "sampler_name": 'DPM++ 2M',
         "n_iter": 1,
-        "batch_size": 1,
+        "batch_size": batch,
         "override_settings": {
           "sd_model_checkpoint": 'realisticVisionV60B1_v51HyperVAE',
           "sd_vae": 'Karras'
         }
       };
 
-      const able_controlnet = { "able_controlnet": true }
+      const able_controlnet = { "able_controlnet": false }
       const control_pose = {"control_pose": "5.png"};
 
 
@@ -117,21 +105,30 @@ let testImageJson = {
       console.log("test :" ,JSON.stringify(data));
 
 
-      fetch('/generate-image', {
+
+      // reminder that if want to using the apiController.js must add "/api" to the path , the setting is based on app.js
+      // send request to routes , which will be send to apiController
+      
+      fetch('/api/generate-image', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
       })
-        .then(response => response.json())
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Image generation failed.');
+          }
+        })
         .then(data => {
-          const imgElement = document.getElementById('generated-image');
-          imgElement.src = 'data:image/png;base64,' + data.images[0];
-          imgElement.style.display = 'block';
+          removeGenImage();
+          installGenImage(data)
         })
         .catch(error => {
           console.error('Error:', error);
-          alert('Image generation failed.');
+          alert(error.message);
         });
     });
