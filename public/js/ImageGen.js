@@ -78,8 +78,9 @@
       let size = document.querySelector('input[name="options"]:checked');
       let width = size.dataset.width;
       let height = size.dataset.height;
-
-  
+      const userPrompt = document.getElementById("image-prompt")
+      userPrompt.innerHTML ="";
+      
       const payload = {
         "prompt": prompt,
         "negative_prompt": negativePrompt,
@@ -126,6 +127,7 @@
         .then(data => {
           removeGenImage();
           installGenImage(data)
+          userPrompt.innerHTML = prompt;
         })
         .catch(error => {
           console.error('Error:', error);
