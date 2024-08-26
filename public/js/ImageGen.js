@@ -3,7 +3,7 @@
     function installGenImage(data){
       const imageBox = document.getElementById("imageBox");
       data.images.forEach((imageData) => {
-        imageBox.innerHTML += `<div class="image-card"><img src="data:image/png;base64,${imageData}" ></div> `;
+        imageBox.innerHTML += `<div class="image-card ${sizeCss}"><img src="data:image/png;base64,${imageData}" ></div> `;
       })
     };
     
@@ -80,7 +80,7 @@
       let height = size.dataset.height;
       const userPrompt = document.getElementById("image-prompt")
       userPrompt.innerHTML ="";
-      
+
       const payload = {
         "prompt": prompt,
         "negative_prompt": negativePrompt,
@@ -109,7 +109,6 @@
 
       // reminder that if want to using the apiController.js must add "/api" to the path , the setting is based on app.js
       // send request to routes , which will be send to apiController
-      
       fetch('/api/generate-image', {
         method: 'POST',
         headers: {
