@@ -15,7 +15,7 @@ const sizeData = {
         { size: [1472, 832] },
     ]
 };
-
+let sizeCss
 const resolutionInputs = document.querySelectorAll('[name="resolution"]');
 document.querySelectorAll('[name="proportion"]').forEach((item) => {
     item.addEventListener('click', (e) => {
@@ -24,38 +24,44 @@ document.querySelectorAll('[name="proportion"]').forEach((item) => {
             case "proportion1":
 
                 resolutionInputs.forEach((item, index) => {
-                    const size = sizeData["2:3"][index].size; 
-                    item.innerHTML = `${size[0]}x${size[1]}`; 
+                    const size = sizeData["2:3"][index].size;
+                    item.innerHTML = `${size[0]}x${size[1]}`;
                     item.dataset.width = size[0];
                     item.dataset.height = size[1];
-                });
 
+                });
+                sizeCss = "image-card-two2three"
                 break;
             case "proportion2":
                 resolutionInputs.forEach((item, index) => {
-                    const size = sizeData["1:1"][index].size; 
-                    item.innerHTML = `${size[0]}x${size[1]}`; 
+                    const size = sizeData["1:1"][index].size;
+                    item.innerHTML = `${size[0]}x${size[1]}`;
                     item.dataset.width = size[0];
                     item.dataset.height = size[1];
                 });
+                sizeCss = "image-card-one2one"
 
                 break;
 
             case "proportion3":
                 resolutionInputs.forEach((item, index) => {
-                    const size = sizeData["16:9"][index].size; 
-                    item.innerHTML = `${size[0]}x${size[1]}`; 
+                    const size = sizeData["16:9"][index].size;
+                    item.innerHTML = `${size[0]}x${size[1]}`;
                     item.dataset.width = size[0];
                     item.dataset.height = size[1];
                 });
+                sizeCss = "image-card-sixteen2nine"
+
                 break;
             default:
                 resolutionInputs.forEach((item, index) => {
-                    const size = sizeData["2:3"][index].size; 
-                    item.innerHTML = `${size[0]}x${size[1]}`; 
+                    const size = sizeData["2:3"][index].size;
+                    item.innerHTML = `${size[0]}x${size[1]}`;
                     item.dataset.width = size[0];
                     item.dataset.height = size[1];
                 });
+                sizeCss = "image-card-two2three"
+
         }
 
     })

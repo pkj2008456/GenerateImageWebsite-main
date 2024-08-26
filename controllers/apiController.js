@@ -18,7 +18,6 @@ exports.generateImage = async (req, res) => {
         const data = req.body; 
         console.log("test", data);
 
-
         const response = await axios.post('http://34.90.139.98:8080/txt2img', JSON.stringify(data));
         console.log("Response from external API:", response.data);
 
