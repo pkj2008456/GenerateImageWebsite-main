@@ -3,9 +3,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const app = express();
-const expressWinston = require('express-winston');
-const winston = require('winston');
-
+const favicon = require('serve-favicon');
 
 // 设置 EJS 作为视图引擎
 app.set('view engine', 'ejs');
@@ -26,7 +24,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
 }));
-
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 // 导入路由
 const pageRoutes = require('./routes/pageRoutes');
 app.use('/', pageRoutes);
