@@ -57,7 +57,7 @@ let testImageJson = {
       }
     }
   
-    var dropdownOptions = document.querySelectorAll('.dropdown-option');
+    let dropdownOptions = document.querySelectorAll('.dropdown-option');
     dropdownOptions.forEach(function (option) {
       option.addEventListener('click', function (event) {
         event.preventDefault();
@@ -84,16 +84,39 @@ let testImageJson = {
   
   
     document.getElementById('generate-button').addEventListener('click', function () {
-      const prompt = document.getElementById('prompt-text').value;
-      const negativePrompt = document.getElementById('negative-prompt-text').value;
-      const style = document.querySelector('.dropbtn').textContent;
+      let prompt = document.getElementById('prompt-text').value;
+      let negativePrompt = document.getElementById('negative-prompt-text').value;
+      let style = document.querySelector('.dropbtn').textContent;
+      let size = document.querySelector('input[name="options"]:checked');
+      let width = size.dataset.width;
+      let height = size.dataset.height;
+
   
-      const data = {
-        prompt: prompt,
-        negative_prompt: negativePrompt,
-        style: style
+      const payload = {
+        "prompt": prompt,
+        "negative_prompt": negativePrompt,
+        "seed": '-1',
+        "steps": 25,
+        "width": width,
+        "height": height,
+        "cfg_scale": 2,
+        "sampler_name": 'DPM++ 2M',
+        "n_iter": 1,
+        "batch_size": 1,
+        "override_settings": {
+          "sd_model_checkpoint": 'realisticVisionV60B1_v51HyperVAE',
+          "sd_vae": 'Karras'
+        }
       };
-  
+
+      const able_controlnet = { "able_controlnet": true }
+      const control_pose = {"control_pose": "5.png"};
+
+
+      const data = {able_controlnet , payload , control_pose, password: '9WUCV45bUUnZ4s%xy*gaN@GZuUZrwK%uv#uf-kYR4Xs6p$4mBH#2E3K=dG85u!Ax'}
+      console.log("test :" ,JSON.stringify(data));
+
+
       fetch('/generate-image', {
         method: 'POST',
         headers: {
