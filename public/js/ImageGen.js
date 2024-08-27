@@ -12,6 +12,16 @@
       const imageBox = document.getElementById("imageBox");
       imageBox.innerHTML = "";
     }
+
+    function setGenImageMeassage(resolution,style,dismension){
+      const msgResolution= document.getElementById("msgResolution");
+      const msgStyle= document.getElementById("msgStyle");
+      const msgDismension= document.getElementById("msgDismension");
+      msgResolution.textContent = resolution;
+      msgStyle.textContent = style;
+      msgDismension.textContent = dismension;
+
+    }
   
     function goToHome() {
       window.location.href = '/mainpage';
@@ -78,6 +88,7 @@
       let size = document.querySelector('input[name="options"]:checked');
       let width = size.dataset.width;
       let height = size.dataset.height;
+      let proportion = document.getElementById("dimensionsButton").textContent;
       const userPrompt = document.getElementById("image-prompt")
       userPrompt.innerHTML ="";
 
@@ -100,7 +111,6 @@
 
       const able_controlnet = { "able_controlnet": false }
       const control_pose = {"control_pose": "5.png"};
-
 
       const data = {able_controlnet , payload , control_pose, password: '9WUCV45bUUnZ4s%xy*gaN@GZuUZrwK%uv#uf-kYR4Xs6p$4mBH#2E3K=dG85u!Ax'}
       console.log("test :" ,JSON.stringify(data));
@@ -126,6 +136,7 @@
         .then(data => {
           removeGenImage();
           installGenImage(data)
+          setGenImageMeassage(`${width}x${height}`, style ,proportion)
           userPrompt.innerHTML = prompt;
         })
         .catch(error => {
@@ -133,3 +144,5 @@
           alert(error.message);
         });
     });
+
+

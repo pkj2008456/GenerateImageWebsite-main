@@ -16,7 +16,10 @@ const sizeData = {
     ]
 };
 let sizeCss
+
 const resolutionInputs = document.querySelectorAll('[name="resolution"]');
+const optionsInputs = document.querySelectorAll('[name="options"]');
+
 document.querySelectorAll('[name="proportion"]').forEach((item) => {
     item.addEventListener('click', (e) => {
 
@@ -24,18 +27,23 @@ document.querySelectorAll('[name="proportion"]').forEach((item) => {
             case "proportion1":
 
                 resolutionInputs.forEach((item, index) => {
-                    const size = sizeData["2:3"][index].size;
-                    item.innerHTML = `${size[0]}x${size[1]}`;
+                    let size = sizeData["2:3"][index].size;
+                    item.textContent = `${size[0]}x${size[1]}`;
+                });
+                optionsInputs.forEach((item, index) => {
+                    let size = sizeData["2:3"][index].size;
                     item.dataset.width = size[0];
                     item.dataset.height = size[1];
-
                 });
                 sizeCss = "image-card-two2three"
                 break;
             case "proportion2":
                 resolutionInputs.forEach((item, index) => {
-                    const size = sizeData["1:1"][index].size;
-                    item.innerHTML = `${size[0]}x${size[1]}`;
+                    let size = sizeData["1:1"][index].size;
+                    item.textContent = `${size[0]}x${size[1]}`;
+                });
+                optionsInputs.forEach((item, index) => {
+                    let size = sizeData["1:1"][index].size;
                     item.dataset.width = size[0];
                     item.dataset.height = size[1];
                 });
@@ -45,8 +53,11 @@ document.querySelectorAll('[name="proportion"]').forEach((item) => {
 
             case "proportion3":
                 resolutionInputs.forEach((item, index) => {
-                    const size = sizeData["16:9"][index].size;
-                    item.innerHTML = `${size[0]}x${size[1]}`;
+                    let size = sizeData["16:9"][index].size;
+                    item.textContent = `${size[0]}x${size[1]}`;
+                });
+                optionsInputs.forEach((item, index) => {
+                    let size = sizeData["16:9"][index].size;
                     item.dataset.width = size[0];
                     item.dataset.height = size[1];
                 });
@@ -55,11 +66,16 @@ document.querySelectorAll('[name="proportion"]').forEach((item) => {
                 break;
             default:
                 resolutionInputs.forEach((item, index) => {
-                    const size = sizeData["2:3"][index].size;
-                    item.innerHTML = `${size[0]}x${size[1]}`;
+                    let size = sizeData["2:3"][index].size;
+                    item.textContent = `${size[0]}x${size[1]}`;
+                });
+                optionsInputs.forEach((item, index) => {
+                    let size = sizeData["2:3"][index].size;
                     item.dataset.width = size[0];
                     item.dataset.height = size[1];
                 });
+
+
                 sizeCss = "image-card-two2three"
 
         }
