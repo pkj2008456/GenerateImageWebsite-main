@@ -46,7 +46,7 @@
       <div class="col-10 p-4">
         <h1 style="text-align: center; color: aliceblue;">Generations</h1>
         <div class="generations-card mt-4">
-          
+
           <div class="row" id="generation-row" style="justify-content: space-around;">
             <!-- Images will be dynamically inserted here -->
           </div>
@@ -55,21 +55,54 @@
     </div>
   </div>
 
+  <div id="imageModal" class="modal">
+    <div id="position-aim">
+      <div class="modal-content-wrapper">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+      </div>
+    </div>
+  </div>
+
   <script>
     const imageUrls = JSON.parse(decodeURIComponent('<%= imageUrls %>'));
 
-    console.log(imageUrls.length);
-
     document.addEventListener("DOMContentLoaded", function () {
       const generationRow = document.getElementById('generation-row');
+
       imageUrls.forEach(image => {
         const imgElement = document.createElement('div');
         imgElement.className = 'col-3 generation-item';
         imgElement.style.justifyContent = "space-around";
-        imgElement.innerHTML = `<img src="${image.url}" alt="${image.alt}" class="img-fluid">`; // 使用 class img-fluid
+        imgElement.innerHTML = `<div class="image-wrapper">
+            <img src="${image.url}" alt="${image.alt}" class="img-fluid">
+            <div class="overlay">
+              <button class="download-btn" onclick="downloadImage('${image.url}')"><i class="fa-solid fa-download"></i>download</button>
+            </div>
+          </div>`;
         generationRow.appendChild(imgElement);
       });
+
+      document.querySelectorAll('.image-wrapper img').forEach(img => {
+        img.addEventListener('click', function () {
+          const modal = document.getElementById("imageModal");
+          const modalImg = document.getElementById("modalImage");
+          modal.style.display = "block";
+          modalImg.src = this.src;
+        });
+      });
+
+      document.querySelector('.close').onclick = function () {
+        document.getElementById("imageModal").style.display = "none";
+      };
     });
+
+    function downloadImage(url) {
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = url.split('/').pop();
+      link.click();
+    }
 
     function goToHome() {
       window.location.href = '/mainpage';
