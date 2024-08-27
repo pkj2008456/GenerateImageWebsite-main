@@ -18,14 +18,14 @@ app.use(express.urlencoded({ extended: true }));
 // 解析 application/json
 app.use(bodyParser.json());
 
-// Session 中间件，必须在路由之前
+
 app.use(session({
     secret: 'my-secret-key', // 替换为你的秘密键
     resave: false,
     saveUninitialized: true,
 }));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-// 导入路由
+
 const pageRoutes = require('./routes/pageRoutes');
 app.use('/', pageRoutes);
 
