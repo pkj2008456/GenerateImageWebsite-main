@@ -90,14 +90,17 @@
       const userPrompt = document.getElementById("image-prompt")
       userPrompt.innerHTML ="";
 
+      
+      
+
       const payload = {
         "prompt": prompt,
         "negative_prompt": `nsfw,${negativePrompt}`,
-        "seed": '-1',
+        "seed": '557152044',
         "steps": 25,
         "width": width,
         "height": height,
-        "cfg_scale": 2,
+        "cfg_scale": 7,
         "sampler_name": 'DPM++ 2M',
         "n_iter": 1,
         "batch_size": batch,

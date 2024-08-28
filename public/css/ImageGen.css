@@ -131,7 +131,9 @@ p {
 
 
 textarea {
-  overflow: hidden;
+  overflow: scroll;
+  scrollbar-width: none;
+
 }
 
 textarea::placeholder {
