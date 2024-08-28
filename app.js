@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const app = express();
 const favicon = require('serve-favicon');
+app.use(express.json({limit: '100mb'}));
+app.use(express.urlencoded({limit: '100mb', extended: true}));
 
 // 设置 EJS 作为视图引擎
 app.set('view engine', 'ejs');

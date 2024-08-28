@@ -131,7 +131,9 @@ p {
 
 
 textarea {
-  overflow: hidden;
+  overflow: scroll;
+  scrollbar-width: none;
+
 }
 
 textarea::placeholder {
@@ -325,3 +327,4 @@ textarea {
   border-radius: 1rem;
   color: #031225;
 }
+

@@ -1,0 +1,25 @@
+.waterfall {
+    width: 100%;
+    margin: 0px auto;
+    column-count: 4;
+    column-gap: 10px;
+
+  }
+
+  .templateItem {
+    padding: 5px;
+    box-sizing: border-box;
+    margin: 0 auto 5px;
+    break-inside: avoid;
+
+  }
+
+  .templateItem img:active{
+    transform: scale(0.97);
+  }
+
+  .templateItem img {
+    width: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+  }
