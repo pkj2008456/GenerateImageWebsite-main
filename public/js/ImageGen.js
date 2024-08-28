@@ -133,6 +133,7 @@
         })
         .then(data => {
           hiddenImageWaiting();
+          showContentItemMessageLine()
           removeGenImage();
           installGenImage(data)
           setGenImageMeassage(`${width}x${height}`, styleName ,proportion)
@@ -148,9 +149,24 @@
     function showImageWaiting(){
       const waitingBox =document.getElementById("waiting-box");
       waitingBox.classList.add("show")
+
     }
 
     function hiddenImageWaiting(){
       const waitingBox =document.getElementById("waiting-box");
       waitingBox.classList.remove("show")
+      const contentItemMessageLine = document.getElementById("contentItemMessageLine");
+      contentItemMessageLine.classList.add("visually-hidden");
     }
+
+    function showContentItemMessageLine(){
+      const contentItemMessageLine = document.getElementById("contentItemMessageLine");
+      contentItemMessageLine.classList.remove("visually-hidden");
+    }
+
+    function hiddenContentItemMessageLine(){
+      const contentItemMessageLine = document.getElementById("contentItemMessageLine");
+      contentItemMessageLine.classList.add("visually-hidden");
+    }
+  
+
