@@ -11,6 +11,8 @@ router.get('/library', pageController.renderLibrary);
 // 渲染图像生成页面
 router.get('/imagegen', pageController.renderImageGen);
 
+router.get('/digitalHuman', pageController.renderDigitalHuman);
+
 // 渲染个人资料页面
 router.get('/profile', pageController.renderProfile);
 
@@ -26,5 +28,8 @@ router.get('/', pageController.renderMainPage);
 // 登录页面和处理登录
 router.get('/login', pageController.renderLogin);
 router.post('/login', pageController.handleLogin);
+
+router.get('/images/controlnet_pose/:category/:pose', pageController.getControlnetPose);
+router.get('/images/template', pageController.getTemplateImage);
 
 module.exports = router;

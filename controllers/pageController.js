@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
+
 exports.renderMainPage = (req, res) => {
     console.log('req.session.userId:', req.session.userId);
     const userId = req.session.userId;
@@ -51,6 +52,15 @@ exports.renderImageGen = (req, res) => {
     }
     res.render('ImageGen');
 };
+
+exports.renderDigitalHuman = (req, res) => {
+    const userId = req.session.userId;
+    if (!userId) {
+        return res.redirect('/login'); // 如果没有登录，重定向到登录页
+    }
+    res.render('digitalHuman');
+};
+
 
 exports.renderSetting = (req, res) => {
     const userId = req.session.userId;
@@ -117,3 +127,38 @@ exports.renderProfile = (req, res) => {
         res.render('profile', { imgLength, userId, imageUrls: encodedImageUrls });
     });
 };
+
+
+
+// 處理取得controlnet pose圖片的request
+exports.getControlnetPose =  (req, res) => {
+    const imagesDir = path.join('public', 'images','controlnet_pose', req.params.category, req.params.pose);
+  
+    fs.readdir(imagesDir, (err, files) => {
+      if (err) {
+        console.error('Error reading images directory:', err);
+        return res.status(500).json({ error: 'Error reading images directory' });
+      }
+  
+      const imageFiles = files.filter(file => path.extname(file).toLowerCase() === '.jpg' || path.extname(file).toLowerCase() === '.png');
+      const imageUrls = imageFiles.map(file => `/images/controlnet_pose/${req.params.category}/${req.params.pose}/${file}`);
+  
+      res.json(imageUrls);
+    });
+  };
+  
+  
+  // 處理取得template 圖片的request
+  exports.getTemplateImage = (req,res)=>{
+    const imagesDir = path.join('public', 'images','template');
+    fs.readdir(imagesDir, (err, files) => {
+      if (err) {
+        console.error('Error reading images directory:', err);
+        return res.status(500).json({ error: 'Error reading images directory' });
+      }
+      const imageFiles = files.filter(file => path.extname(file).toLowerCase() === '.jpg' || path.extname(file).toLowerCase() === '.png');
+      const imageUrls = imageFiles.map(file => `/images/template/${file}`);
+      res.json(imageUrls);
+    });
+  };
+  

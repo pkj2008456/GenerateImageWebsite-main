@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/digitalHuman.css">
+    <link rel="stylesheet" href="/css/submitFace.css">
+    <link rel="stylesheet" href="/css/templateImage.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div class="generator-sidebar backgroudColor-main">
+
+        <input type="button" value="Template" class="templateButton backgroudColor-sub fontTextColor"
+            data-bs-toggle="modal" data-bs-target="#templateModalCenter">
+
+        <div class="inside-navbar" name="insideNavbar">
+            <div class="insideNavbarItem fontTextColor " name="insideNavbarItem" id="generatorPageButton">Generator
+            </div>
+            <div class="insideNavbarItem fontTextColor" name="insideNavbarItem" id="posePageButton">Pose</div>
+            <div class="insideNavbarItem fontTextColor" name="insideNavbarItem" id="faceUploadPageButton">Face Upload
+            </div>
+        </div>
+
+        <div class="sidebar-context backgroudColor-main" name="selectContext">
+
+            <div class="text-line">
+                <div class="description-text  fontTextColor">
+                    Description
+                </div>
+                <div class="description-button">
+                    <div class="random-button backgroudColor-sub fontTextColor" id="randomButton">
+
+                        <img src="/images/icon/dice.png" alt="" width="20px">
+                        Randomize
+                    </div>
+                    <div class="reset-button fontTextColor" id="ResetAllButton">Reset</div>
+                </div>
+
+            </div>
+
+            <div class="prompt-box backgroudColor-sub">
+                <input type="text" placeholder="Enter prompt" class="prompt-input backgroudColor-sub fontTextColor"
+                    id="promptInput">
+                <div id="prompt-bubble-area" contenteditable="false">
+                </div>
+            </div>
+
+            <div class="text-line fontTextColor ">
+                Negative prompt
+
+                <span data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Use this field to describe what you don't want to see in the generated image">
+                    <img src="/images/icon/exclamation.png" alt="" width="15px">
+                </span>
+            </div>
+
+            <div class="negative-prompt-box backgroudColor-sub">
+                <input type="text" placeholder="Enter prompt" class="prompt-input backgroudColor-sub fontTextColor"
+                    id="negativePromptInput">
+                <div id="negative-prompt-bubble-area" contenteditable="false">
+                </div>
+            </div>
+
+
+            <div class="text-line">
+                <div class="left fontTextColor">Seed</div>
+            </div>
+
+            <input type="number" class="backgroudColor-sub fontTextColor seed-box" value="-1" id="seed">
+
+
+            <div class="text-line">
+                <div class="left fontTextColor">Image Dimensions</div>
+            </div>
+
+
+
+            <div class="d-flex flex-row justify-content-between mt-n1">
+                <div class="backgroudColor-sub">
+                    <input type="radio" class="btn-check image-select" name="options" id="option1" autocomplete="off"
+                        data-width="520" data-height="720">
+                    <label class="btn " for="option1" style="width: 7rem;">
+                        <div class="fontTextColor">
+                            <div>Small</div>
+                            <div name="resolution">520x720</div>
+                        </div>
+                    </label>
+                </div>
+                <div class="backgroudColor-sub">
+                    <input type="radio" class="btn-check image-select" name="options" id="option2" autocomplete="off"
+                        data-width="820" data-height="1080">
+                    <label class="btn " for="option2" style="width: 7rem;">
+                        <div class="fontTextColor">
+                            <div>Medium</div>
+                            <div name="resolution">820x1080</div>
+                        </div>
+                    </label>
+                </div>
+                <div class="backgroudColor-sub">
+                    <input type="radio" class="btn-check image-select" name="options" id="option3" autocomplete="off"
+                        data-width="920" data-height="1180" disabled>
+                    <label class="btn " for="option3" style="width: 7rem; ">
+                        <div class="fontTextColor">
+                            <div>Large</div>
+                            <div name="resolution">920x1180</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+
+            <div class="text-line">
+                <div class="left fontTextColor">Number of Images</div>
+            </div>
+            <div class="d-flex flex-row justify-content-between mt-n1">
+                <div class="backgroudColor-sub">
+                    <input type="radio" class="btn-check image-select" name="batchs" id="batch1" autocomplete="off"
+                        data-batch="1">
+                    <label class="btn " for="batch1" style="width: 5rem; ">
+                        <div class="fontTextColor">
+                            <div>1</div>
+
+                        </div>
+                    </label>
+                </div>
+                <div class="backgroudColor-sub">
+                    <input type="radio" class="btn-check image-select" name="batchs" id="batch2" autocomplete="off"
+                        data-batch="2">
+                    <label class="btn " for="batch2" style="width: 5rem; ">
+                        <div class="fontTextColor">
+                            <div>2</div>
+
+                        </div>
+                    </label>
+                </div>
+                <div class="backgroudColor-sub">
+                    <input type="radio" class="btn-check image-select" name="batchs" id="batch3" autocomplete="off"
+                        data-batch="3" disabled>
+                    <label class="btn " for="batch3" style="width: 5rem; ">
+                        <div class="fontTextColor">
+                            <div>3</div>
+                        </div>
+                    </label>
+                </div>
+                <div class="backgroudColor-sub">
+                    <input type="radio" class="btn-check image-select" name="batchs" id="batch4" autocomplete="off"
+                        data-batch="4" disabled>
+                    <label class="btn " for="batch4" style="width: 5rem; ">
+                        <div class="fontTextColor">
+                            <div>4</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="text-line">
+                <div class="left fontTextColor">Gender</div>
+                <div class="right forSubTextColor" name="selectionClear" id="genderClear">Clear</div>
+            </div>
+
+            <div class="gender-radio-box" name="genderRadioBox">
+                <div>
+                    <label>
+                        <input name="radioGender" type="radio" value="Male" />
+                        <span class="fontTextColor">Male</span>
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input name="radioGender" type="radio" value="Female" />
+                        <span class="fontTextColor">Female</span>
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input name="radioGender" type="radio" value="Others" />
+                        <span class="fontTextColor">Others</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="age-box" name="ageBox">
+                <div class="age-text">
+                    <div class="left fontTextColor">
+                        Age
+                        <span id="rangeValue" class="forSubTextColor"></span>
+
+                    </div>
+                    <div class="right forSubTextColor" name="selectionClear" id="ageClear">
+                        Clear
+                    </div>
+                </div>
+                <div class="age-range-box">
+                    <div class="range-container">
+                        <div class="range-slider-container">
+                            <div class="range-steps">
+                                <div class="step-point" data-value="0"></div>
+                                <div class="step-point" data-value="10"></div>
+                                <div class="step-point" data-value="20"></div>
+                                <div class="step-point" data-value="30"></div>
+                                <div class="step-point" data-value="40"></div>
+                                <div class="step-point" data-value="50"></div>
+                                <div class="step-point" data-value="60"></div>
+                                <div class="step-point" data-value="70"></div>
+                            </div>
+                            <input type="range" class="range-slider" min="0" max="70" value="0" step="10" id="ageRange">
+                            <!-- <input type="range" min="0" max="70" value="40" step="10" id="age-range" oninput="handleRangeInput()" value="hidden"> -->
+
+                        </div>
+                        <div class="range-labels">
+                            <!-- <span>0</span>
+                            <span>100</span> -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="humam-style-box">
+
+                <div class="container">
+                    <div class="style-line">
+                        <div class="row ">
+                            <div class="col-6">
+                                <div class="item-subjust">
+                                    <div class="left fontTextColor">
+                                        Skin Tone
+                                    </div>
+                                    <div class="right forSubTextColor" name="selectionClear">
+                                        Clear
+                                    </div>
+                                </div>
+                                <div>
+                                    <select class="form-select" aria-label="Skin Tone" name="RoleStyleSelector"
+                                        id="SkinTongSelector">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6 ">
+                                <div class="item-subjust">
+                                    <div class="left fontTextColor">
+                                        Ethnicity
+                                    </div>
+                                    <div class="right forSubTextColor" name="selectionClear">
+                                        Clear
+                                    </div>
+                                </div>
+                                <select class="form-select " aria-label="Ethnicity" name="RoleStyleSelector"
+                                    id="EthnicitySelector">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="style-line">
+                        <div class="row ">
+                            <div class="col-6 ">
+                                <div class="item-subjust">
+                                    <div class="left fontTextColor">
+                                        Body Type
+                                    </div>
+                                    <div class="right forSubTextColor" name="selectionClear">
+                                        Clear
+                                    </div>
+                                </div>
+                                <select class="form-select " aria-label="Body Type" name="RoleStyleSelector"
+                                    id="BodyTypeSelector">
+                                </select>
+                            </div>
+                            <div class="col-6 ">
+                                <div class="item-subjust">
+                                    <div class="left fontTextColor">
+                                        Clothing Style
+                                    </div>
+                                    <div class="right forSubTextColor" name="selectionClear">
+                                        Clear
+                                    </div>
+                                </div>
+                                <!-- <div class="custom-select">
+                                <select name="RoleStyleSelector" id="ClothingStyleSelector"></select>
+                            </div> -->
+                                <select class="form-select" aria-label="Clothing Style" name="RoleStyleSelector"
+                                    id="ClothingStyleSelector">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="style-line">
+                        <div class="row">
+                            <div class="col-6 ">
+                                <div class="item-subjust">
+                                    <div class="left fontTextColor">
+                                        Clothing Color
+                                    </div>
+                                    <div class="right forSubTextColor" name="selectionClear">
+                                        Clear
+                                    </div>
+                                </div>
+                                <select class="form-select" aria-label="Clothing Color" name="RoleStyleSelector"
+                                    id="ClothingColorSelector">
+                                </select>
+                            </div>
+                            <div class="col-6 ">
+                                <div class="item-subjust">
+                                    <div class="left fontTextColor">
+                                        Clothing Top
+                                    </div>
+                                    <div class="right forSubTextColor" name="selectionClear">
+                                        Clear
+                                    </div>
+                                </div>
+                                <select class="form-select" aria-label="Clothing Top" name="RoleStyleSelector"
+                                    id="ClothingTopSelector">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="style-line">
+                        <div class="row">
+                            <div class="col-6 ">
+                                <div class="item-subjust">
+                                    <div class="left fontTextColor">
+                                        Clothing Bottom
+                                    </div>
+                                    <div class="right forSubTextColor" name="selectionClear">
+                                        Clear
+                                    </div>
+                                </div>
+                                <select class="form-select" aria-label="Clothing Bottom" name="RoleStyleSelector"
+                                    id="ClothingBottomSelector"></select>
+                            </div>
+                            <div class="col-6">
+                                <div class="item-subjust">
+                                    <div class="left fontTextColor">
+                                        Underwear
+                                    </div>
+                                    <div class="right forSubTextColor" name="selectionClear">
+                                        Clear
+                                    </div>
+                                </div>
+                                <select class="form-select" aria-label="Underwear" name="RoleStyleSelector"
+                                    id="ClothingUnderwearSelector">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="style-line">
+
+                        <div class="row">
+                            <div class="col-6 ">
+                                <div class="item-subjust">
+                                    <div class="left fontTextColor">
+                                        Outerwear
+                                    </div>
+                                    <div class="right forSubTextColor" name="selectionClear">
+                                        Clear
+                                    </div>
+                                </div>
+                                <select class="form-select" aria-label="Outerwear" name="RoleStyleSelector"
+                                    id="ClothingOuterwearSelector"></select>
+                            </div>
+                            <div class="col-6 ">
+                                <div class="item-subjust">
+                                    <div class="left fontTextColor">
+                                        Footwear
+                                    </div>
+                                    <div class="right forSubTextColor" name="selectionClear">
+                                        Clear
+                                    </div>
+                                </div>
+                                <select class="form-select" aria-label="Footwear" name="RoleStyleSelector"
+                                    id="FootwearSelector"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="style-line">
+
+                        <div class="row">
+                            <div class="col-6 ">
+                                <div class="item-subjust">
+                                    <div class="left fontTextColor">
+                                        Accessory
+                                    </div>
+                                    <div class="right forSubTextColor" name="selectionClear">
+                                        Clear
+                                    </div>
+                                </div>
+                                <select class="form-select" aria-label="Accessory" name="RoleStyleSelector"
+                                    id="AccessorySelector"></select>
+                            </div>
+
+                            <div class="col-6 ">
+                                <div class="item-subjust">
+                                    <div class="left fontTextColor">
+                                        Hairstyle
+                                    </div>
+                                    <div class="right forSubTextColor" name="selectionClear">
+                                        Clear
+                                    </div>
+                                </div>
+                                <select class="form-select" aria-label="Hairstyle" name="RoleStyleSelector"
+                                    id="HairstyleSelector"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hair-color-box">
+                <div class="text-line">
+                    <div class="left fontTextColor">
+                        Hair Color
+                    </div>
+                    <div class="right forSubTextColor" name="selectionClear" id="hairClear">
+                        Clear
+                    </div>
+                </div>
+                <div class="hair-color-line">
+                    <input type="radio" class="hair-radio" name="hair-color" id="black" value="Black">
+                    <label for="black" name="hair-color-div" class="hair-item" style="background-color: #000;"></label>
+
+                    <input type="radio" class="hair-radio" name="hair-color" id="brown" value="Brown">
+                    <label for="brown" name="hair-color-div" class="hair-item"
+                        style="background-color: #692C00;"></label>
+
+                    <input type="radio" class="hair-radio" name="hair-color" id="dark-brown" value="Dark-brown">
+                    <label for="dark-brown" name="hair-color-div" class="hair-item"
+                        style="background-color: #6E4F4F;"></label>
+
+                    <input type="radio" class="hair-radio" name="hair-color" id="gray" value="Gray">
+                    <label for="gray" name="hair-color-div" class="hair-item"
+                        style="background-color: #6B6572;"></label>
+
+                    <input type="radio" class="hair-radio" name="hair-color" id="light-gray" value="Light-gray">
+                    <label for="light-gray" name="hair-color-div" class="hair-item"
+                        style="background-color: #DADADA;"></label>
+
+                    <input type="radio" class="hair-radio" name="hair-color" id="blonde" value="Blonde">
+                    <label for="blonde" name="hair-color-div" class="hair-item"
+                        style="background-color: #E5D088;"></label>
+
+                    <input type="radio" class="hair-radio" name="hair-color" id="light-blonde" value="Light-blonde">
+                    <label for="light-blonde" name="hair-color-div" class="hair-item"
+                        style="background-color: #FFDDC4;"></label>
+
+                    <input type="radio" class="hair-radio" name="hair-color" id="white" value="White">
+                    <label for="white" name="hair-color-div" class="hair-item" style="background-color: #FFF;"></label>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- for face upload  -->
+        <div class="sidebar-face-upload backgroudColor-main" name="selectContext">
+            <form id="upload-form" method="post" enctype="multipart/form-data">
+                <div class="file-upload">
+
+                    <div class="image-upload-wrap">
+                        <input class="file-upload-input" name="faceUpload" id="faceUpload" type='file'
+                            onchange="readURL(this);" accept="image/*" />
+
+                        <div class="drag-text">
+                            <h3>Upload face</h3>
+                        </div>
+
+                    </div>
+                    <div class="file-upload-content">
+                        <img class="file-upload-image" id="image-box" src="#" alt="your image" />
+                        <div class="image-title-wrap">
+                            <button type="button" onclick="removeUpload()" class="remove-image">Remove
+                                <span class="image-title">Uploaded Image</span>
+                            </button>
+                        </div>
+                    </div>
+                    </br>
+                    <!-- <input type="submit" onclick="showUpload()" value="Upload Image" class="file-upload-btn"
+                        id="uploadFaceButton"> -->
+                </div>
+            </form>
+            <div id="testImage">
+                <img src="" alt="" id="" class="image-show-box">
+            </div>
+
+        </div>
+
+
+
+
+
+        <!--  -->
+        <!--controlNet pose  -->
+        <div class="sidebar-pose backgroudColor-main" name="selectContext">
+            <div class="style-line">
+                <div class="row">
+                    <div class="col-6 ">
+                        <div class="item-subjust">
+                            <div class="left fontTextColor">
+                                Pose Age
+                            </div>
+
+                        </div>
+                        <select class="form-select" id="poseAge" name="poseOptionItem">
+                            <option value="Child">Child</option>
+                            <option value="Teenager">Teenager</option>
+                            <option value="Adult" selected>Adult</option>
+                        </select>
+                    </div>
+                    <div class="col-6 ">
+                        <div class="item-subjust">
+                            <div class="left fontTextColor">
+                                Pose Gender
+                            </div>
+                        </div>
+                        <select class="form-select" id="poseGender" name="poseOptionItem">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-container-image" id="imageContainer">
+
+            </div>
+        </div>
+        <!--  -->
+
+        <div class="generateor-button-box backgroudColor-main">
+            <button id="generateButton" class="backgroudColor-item fontTextColor">
+                Generate
+                <img src="/images/icon/enter-button-outline.png" alt="" width="18px">
+            </button>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- The location where the generated image is placed -->
+    <div class="image-container">
+        <img id="aiImage" src="" alt="text2img" name="aiImages">
+    </div>
+
+
+
+    <!-- This is when more than one image is generated, some preview images will be placed below. -->
+    <div class="image-option visually-hidden" id="preview">
+    </div>
+
+    <!-- A download button will be displayed after the member picture is generated. -->
+    <div class="image-option  visually-hidden">
+        <button id="imageDoawnload" class="btn  backgroudColor-item fontTextColor">
+            Download
+            <a download="download" href="" id="downloadLink" style="text-decoration: none;"></a>
+            <img src="/images/icon/download.png" alt="" style="width: 1.5rem;">
+        </button>
+    </div>
+
+    <!-- The placement position of the image seed after generating the image -->
+    <div class="seed-container visually-hidden">
+        <label for="copySeed">Seed</label>
+        <input type="text" id="copySeed" disabled>
+        <button onclick="copySeed()" style="border:none;"><img src="/images/icon/copy.png" alt=""
+                style="width: 28px;"></button>
+    </div>
+
+
+    <!--Template Modal -->
+    <div class="modal fade" id="templateModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog  modal-xl modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+
+                    <div class="waterfall">
+                        <!-- the install function is in template.js -->
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- -->
+    <!-- An animation of a black screen and loading icon when generating a picture -->
+    <div class="wait-overlay" id="wait-overlay">
+        <div class="waitiing-message-box">
+            <div>
+                Pls waiting ...
+            </div>
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+
+
+    <script src="/js/digitalHuman.js"></script>
+    <script src="/js/generateButton.js"></script>
+    <script src="/js/posePage.js"></script>
+    <script src="/js/faceUpload.js"></script>
+    <script src="/js/submitFace.js"></script>
+    <script src="/js/bootstrapEnable.js"></script>
+    <script src="/js/template.js"></script>
+</body>
+
+</html>
