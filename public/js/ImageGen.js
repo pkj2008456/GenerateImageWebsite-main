@@ -1,5 +1,4 @@
-
-
+    let sizeCss = "image-card-two2three";
     function installGenImage(data){
       const imageBox = document.getElementById("imageBox");
       data.images.forEach((imageData) => {
@@ -32,10 +31,6 @@
     }
   
   
-    // Add this function to update the dropbtn text
-    function updateDropbtnText(text) {
-      document.querySelector('.dropbtn').textContent = text;
-    }
   
     const dimensionsDropdownTrigger = document.getElementById('dimensionsDropdownTrigger');
   
@@ -59,14 +54,16 @@
       option.addEventListener('click', function (event) {
         event.preventDefault();
         const optionText = this.textContent;
-        updateDropbtnText(optionText, this.closest('.image-dropdown '));
+        const checkpoint = this.dataset.checkpoint;
+        updateDropbtnText(checkpoint,optionText, this.closest('.image-dropdown '));
         this.parentNode.classList.remove('show'); // Close dropdown when option is selected
       });
     });
   
-    function updateDropbtnText(text, dropdown) {
+    function updateDropbtnText(checkpoint,text, dropdown) {
       const button = dropdown.querySelector('.dropbtn');
       button.textContent = text; // Update the button text
+      button.dataset.checkpoint = checkpoint;
     }
   
     // Close the dropdown if the user clicks outside of it
@@ -83,7 +80,8 @@
     document.getElementById('generate-button').addEventListener('click', function () {
       let prompt = document.getElementById('prompt-text').value;
       let negativePrompt = document.getElementById('negative-prompt-text').value;
-      let style = document.querySelector('.dropbtn').textContent;
+      let styleCheckpoint = document.querySelector('.dropbtn').dataset.checkpoint;
+      let styleName = document.querySelector('.dropbtn').textContent;
       let batch =  document.querySelector('input[name="batchs"]:checked').dataset.batch;
       let size = document.querySelector('input[name="options"]:checked');
       let width = size.dataset.width;
@@ -94,7 +92,7 @@
 
       const payload = {
         "prompt": prompt,
-        "negative_prompt": negativePrompt,
+        "negative_prompt": `nsfw,${negativePrompt}`,
         "seed": '-1',
         "steps": 25,
         "width": width,
@@ -104,7 +102,7 @@
         "n_iter": 1,
         "batch_size": batch,
         "override_settings": {
-          "sd_model_checkpoint": 'realisticVisionV60B1_v51HyperVAE',
+          "sd_model_checkpoint": styleCheckpoint? styleCheckpoint: 'realisticVisionV60B1_v51HyperVAE',
           "sd_vae": 'Karras'
         }
       };
@@ -114,7 +112,7 @@
 
       const data = {able_controlnet , payload , control_pose, password: '9WUCV45bUUnZ4s%xy*gaN@GZuUZrwK%uv#uf-kYR4Xs6p$4mBH#2E3K=dG85u!Ax'}
       console.log("test :" ,JSON.stringify(data));
-
+      showImageWaiting();  
 
 
       // reminder that if want to using the apiController.js must add "/api" to the path , the setting is based on app.js
@@ -134,15 +132,25 @@
           }
         })
         .then(data => {
+          hiddenImageWaiting();
           removeGenImage();
           installGenImage(data)
-          setGenImageMeassage(`${width}x${height}`, style ,proportion)
+          setGenImageMeassage(`${width}x${height}`, styleName ,proportion)
           userPrompt.innerHTML = prompt;
         })
         .catch(error => {
+          hiddenImageWaiting();
           console.error('Error:', error);
           alert(error.message);
         });
     });
 
+    function showImageWaiting(){
+      const waitingBox =document.getElementById("waiting-box");
+      waitingBox.classList.add("show")
+    }
 
+    function hiddenImageWaiting(){
+      const waitingBox =document.getElementById("waiting-box");
+      waitingBox.classList.remove("show")
+    }

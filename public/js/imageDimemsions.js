@@ -15,7 +15,6 @@ const sizeData = {
         { size: [1472, 832] },
     ]
 };
-let sizeCss
 
 const resolutionInputs = document.querySelectorAll('[name="resolution"]');
 const optionsInputs = document.querySelectorAll('[name="options"]');
@@ -35,7 +34,7 @@ document.querySelectorAll('[name="proportion"]').forEach((item) => {
                     item.dataset.width = size[0];
                     item.dataset.height = size[1];
                 });
-                sizeCss = "image-card-two2three"
+                sizeCss = "image-card-two2three";
                 break;
             case "proportion2":
                 resolutionInputs.forEach((item, index) => {
@@ -47,7 +46,7 @@ document.querySelectorAll('[name="proportion"]').forEach((item) => {
                     item.dataset.width = size[0];
                     item.dataset.height = size[1];
                 });
-                sizeCss = "image-card-one2one"
+                sizeCss = "image-card-one2one";
 
                 break;
 
@@ -61,7 +60,7 @@ document.querySelectorAll('[name="proportion"]').forEach((item) => {
                     item.dataset.width = size[0];
                     item.dataset.height = size[1];
                 });
-                sizeCss = "image-card-sixteen2nine"
+                sizeCss = "image-card-sixteen2nine";
 
                 break;
             default:
@@ -74,9 +73,7 @@ document.querySelectorAll('[name="proportion"]').forEach((item) => {
                     item.dataset.width = size[0];
                     item.dataset.height = size[1];
                 });
-
-
-                sizeCss = "image-card-two2three"
+                sizeCss = "image-card-two2three";
 
         }
 
