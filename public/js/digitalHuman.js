@@ -468,6 +468,7 @@ hairColorRadios.forEach(radio => {
     });
 });
 
+
 // hidden all harir radio button ,which just show the lable
 hairColorRadios.forEach(radio => {
     radio.style.display = 'none';
