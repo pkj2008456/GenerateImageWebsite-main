@@ -79,12 +79,12 @@ async function img2img() {
       promptOutput = "";
       nprompt = "";
       document.getElementById("aiImage").dataset["istemplate"] = "false";
-      document.getElementById("waitingImg").style.display = "none";
-      document.getElementById("aiImage").style.display = "block";
-      document.getElementById("imageDoawnload").style.display = "block"
+      afterGenShowItem();
+      afterGenHiddneItem();
       document.getElementById("aiImage").src = "data:image/png;base64," + data['images'];
     })
     .catch(error => {
+      afterGenHiddneItem();
       console.error('Error:', error);
     });
 }

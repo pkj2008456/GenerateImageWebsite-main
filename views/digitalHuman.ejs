@@ -593,11 +593,16 @@
     <!-- An animation of a black screen and loading icon when generating a picture -->
     <div class="wait-overlay" id="wait-overlay">
         <div class="waitiing-message-box">
-            <div>
-                Pls waiting ...
-            </div>
-            <div class="spinner-border text-primary" role="status">
-                <span class="visually-hidden">Loading...</span>
+            <div class="d-flex flex-row" style="width: 100%;">
+                <div class="d-flex justify-content-center" style="width: 20%;">
+                    <div class="spinner-border text-primary " role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+                <div style="width: 15rem;">
+                    <div>Generating (&lt 3m remaining)</div>
+                    <div class="text-secondary">Pls waiting ...</div>
+                </div>
             </div>
         </div>
     </div>

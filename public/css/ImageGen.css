@@ -321,10 +321,12 @@ textarea {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 10rem;
-  height: 5rem;
-  background-color: rgb(176, 196, 226);
+  width: 20rem;
+  height: 10rem;
+  background-color: rgb(66, 68, 72);
   border-radius: 1rem;
-  color: #031225;
+  color: #ffffff;
+  font-size: 1rem;
+  padding: 0.5rem;
 }
 

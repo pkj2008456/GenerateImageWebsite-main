@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let pose = ""
         if (document.querySelector(".selected-pose")) {
             link = document.querySelector(".selected-pose").src;
-            pose = link.replace("http://127.0.0.1:3000/images/controlnet_pose/", "");
+            pose = link.replace("http://52.163.70.189:3001/images/controlnet_pose/", "");
         } else {
             promptOutputN += "show the hands,standing pose , smaple background"
             nprompt += ", moving, <knees bending:10> , bending knees , hand carry somethings"
